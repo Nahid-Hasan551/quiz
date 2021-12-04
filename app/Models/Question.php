@@ -2,18 +2,18 @@
 
 namespace App\Models;
 
+
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Quiz extends Model
+class Question extends Model
 {
 
-    protected $table = 'quiz';
+    protected $table = 'question';
     public $timestamps = true;
 
     use SoftDeletes;
 
     protected $dates = ['deleted_at'];
-    protected $fillable = array('quiz_name', 'lavel');
 
 }
