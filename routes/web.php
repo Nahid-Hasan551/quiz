@@ -2,6 +2,11 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\QuizController;
+use App\Http\Controllers\AppQuestionController;
+use App\Providers\RouteServiceProvider;
+
+
+use App\Http\Controllers\QuestionController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -50,9 +55,9 @@ Route::get('level',function(){
 Route::get('dashboard',function(){
     return view('dashboard');
 });
-Route::get('create-quiz',function(){
-    return view('create-quiz');
-});
+// Route::get('create-quiz',function(){
+//     return view('create-quiz');
+// });
 Route::get('manage-quiz',function(){
     return view('manage-quiz');
 });
@@ -73,6 +78,13 @@ Route::get('homepage',function(){
 
 
 
-Route::resource('question', 'QuestionController');
 
-Route::resource('quiz', 'QuizController');
+
+
+Route::get('create-quiz',[QuestionController::class, 'index'])->name('create-quiz');
+
+
+
+// Route::resource('question', 'QuestionController');
+
+// Route::resource('quiz', 'QuizController');

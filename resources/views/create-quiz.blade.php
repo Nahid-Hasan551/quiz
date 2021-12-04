@@ -311,7 +311,7 @@
                                         <div class="input-group-prepend">
                                           <label class="input-group-text" for="inputGroupSelect01">Quiz Type</label>
                                         </div>
-                                        <select onchange="quizTypeChanger()" name="" class="custom-select" id="inputGroupSelect01">
+                                        <select onchange="quizTypeChanger()" name="quiz_type" class="quiz_type custom-select" id="inputGroupSelect01">
                                           <option  value="1">Free Quiz</option>
                                           <option selected value="2">Classic Quiz</option>
                                         </select>
@@ -321,7 +321,7 @@
                                         <div class="input-group-prepend">
                                           <label class="input-group-text" for="inputGroupSelect01">Class level</label>
                                         </div>
-                                        <select class="custom-select" id="inputGroupSelect02">
+                                        <select class="class_level custom-select" name="class_level" id="inputGroupSelect02">
                                           <option value="1">SSC</option>
                                           <option value="2">HSC</option>
                                           <option value="3">University Admission</option>
@@ -330,12 +330,12 @@
                                     </div>
                                     <div id="subject" class="input-group">
                                         <span class="input-group-text">Subject Name</span>
-                                        <input class="form-control" aria-label="With textarea"></input>
+                                        <input class="form-control subject_name" name="subject_name" aria-label="With textarea"></input>
                                     </div>
 
                                     <div id="level" class="input-group mb-3 mt-3">
                                         <div class="input-group-prepend">
-                                          <label class="input-group-text" for="inputGroupSelect04">Level</label>
+                                          <label class="input-group-text level" name="lavel" for="inputGroupSelect04">Level</label>
                                         </div>
                                         <select class="custom-select" id="inputGroupSelect04">
                                           <option value="1">One</option>
@@ -401,7 +401,7 @@
                                                 </div>
                                                 <div class="modal-footer">
                                                 <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                                                <button type="button" class="btn btn-primary">Save changes</button>
+                                                <button type="button" onclick="saveQuiz();" class="btn btn-primary">Save changes</button>
                                                 </div>
                                             </div>
                                             </div>
@@ -485,7 +485,7 @@
                 $('#card-items').append(
                     $('<div>').prop({
                         id: 'innerdiv',
-                        innerHTML: '<h6 class="text-center">Question no: <span class="counter">0</span></h6><input type="text" class="form-control" placeholder="Write you Question here" aria-label="Question" aria-describedby="basic-addon1"><input type="text" class="form-control" placeholder="First option" aria-label="Question" aria-describedby="basic-addon1"><input type="text" class="form-control" placeholder="Secoond option" aria-label="Question" aria-describedby="basic-addon1"><input type="text" class="form-control" placeholder="Third option" aria-label="Question" aria-describedby="basic-addon1"><i  onclick="deleteBtn(this)" class="fas fa-fw fa-trash text-danger float-right mt-4 delete-btn"></i><br>',
+                        innerHTML: '<h6 class="text-center">Question no: <span class="counter">0</span></h6><input type="text" id="question" name="question" class="m-2 form-control" placeholder="Write you Question here" aria-label="Question" aria-describedby="basic-addon1"><input type="text" class=" m-2 form-control" id="first_option" name="first_option" placeholder="First option" aria-label="Question" aria-describedby="basic-addon1"><input type="text" class=" m-2 form-control" id="secound_option" name="secound_option" placeholder="Secoond option" aria-label="Question" aria-describedby="basic-addon1"><input type="text" class="m-2 form-control" id="third_option" name="third_option" placeholder="Third option" aria-label="Question" aria-describedby="basic-addon1"><input type="text" class="m-2 form-control" id="forth_option" name="forth_option" placeholder="Fourth option" aria-label="Question" aria-describedby="basic-addon1"><input type="text" class=" m-2 form-control" id="result" name="result" placeholder="Enter Your result" aria-label="Question" aria-describedby="basic-addon1"><i  onclick="deleteBtn(this)" class="fas fa-fw fa-trash text-danger float-right mt-4 delete-btn"></i><br>',
                         className: 'item mb-3 '
                     })
 
@@ -532,6 +532,22 @@
             }
         }
 
+        function saveQuiz(){
+            let quiz_type = $('.quiz_type').val();
+            let lavel = $('.lavel').val();
+            let subject_name = $('.subject_name').val();
+            let class_level = $('.class_level').val();
+            alert(class_level);
+            let question = $('#question').val();
+            let first_option = $('#first_option').val();
+            let secound_option = $('#secound_option').val();
+            let third_option = $('#third_option').val();
+            let forth_option = $('#forth_option').val();
+            let result = $('#result').val();
+
+            console.log(quiz_type,lavel,subject_name,class_level,question,first_option,secound_option,third_option,forth_option);
+
+        }
     </script>
 
 </body>

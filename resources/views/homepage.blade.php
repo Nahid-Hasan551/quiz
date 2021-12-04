@@ -173,7 +173,7 @@
 
 
                                     <li class="nav-item">
-                                        <a href="/create-quiz">Create Quiz</a>
+                                        <a href="{{ route('create-quiz') }}">Create Quiz</a>
                                     </li>
 
 
