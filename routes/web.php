@@ -13,8 +13,11 @@ use App\Http\Controllers\QuizController;
 |
 */
 
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 Route::get('/', function () {
-    return view('welcome');
+    return view('homepage');
 });
 Route::get('homepage',function(){
     return view('homepage');
@@ -67,3 +70,9 @@ Route::get('manage-quiz',function(){
 Route::get('homepage',function(){
     return view('homepage');
 });
+
+
+
+Route::resource('question', 'QuestionController');
+
+Route::resource('quiz', 'QuizController');

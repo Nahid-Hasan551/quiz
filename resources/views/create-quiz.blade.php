@@ -70,12 +70,12 @@
                 </div>
             </li>
 
-            
+
 
             <!-- Divider -->
             <hr class="sidebar-divider">
 
-        
+
 
             <!-- Sidebar Toggler (Sidebar) -->
             <div class="text-center d-none d-md-inline">
@@ -311,12 +311,12 @@
                                         <div class="input-group-prepend">
                                           <label class="input-group-text" for="inputGroupSelect01">Quiz Type</label>
                                         </div>
-                                        <select onchange="quizTypeChanger()" class="custom-select" id="inputGroupSelect01">
+                                        <select onchange="quizTypeChanger()" name="" class="custom-select" id="inputGroupSelect01">
                                           <option  value="1">Free Quiz</option>
                                           <option selected value="2">Classic Quiz</option>
                                         </select>
                                     </div>
-                                
+
                                     <div id="class-level" class="input-group mb-3 mt-3">
                                         <div class="input-group-prepend">
                                           <label class="input-group-text" for="inputGroupSelect01">Class level</label>
@@ -357,12 +357,12 @@
                                         <div class="col-md-6 col-sm-6"><h6 class="m-0 font-weight-bold text-primary">Add your Question</h6></div>
                                         <div id="add-question" class="col-md-6 col-sm-6"> <i class="add-qus-btn fas fa-fw fa-plus float-right"></i> </div>
                                     </div>
-                                    
-                                    
+
+
                                 </div>
                                 <div id="card-body" class="card-body">
                                     <div id="card-items" class="card-item">
-                                       
+
                                     </div>
                                 </div>
                             </div>
@@ -377,7 +377,7 @@
                                 <div class="card-header py-3">
                                     <div class="row">
                                         <div class="col-md-6 col-sm-6"><h6 class="m-0 font-weight-bold text-primary">Are you want to save changes?</h6></div>
-                                    </div>                                  
+                                    </div>
                                 </div>
                                 <div id="card-body" class="card-body">
                                     <div id="" class="card-item">
@@ -385,7 +385,7 @@
                                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
                                             Save
                                         </button>
-                                        
+
                                         <!-- Modal -->
                                         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                             <div class="modal-dialog" role="document">
@@ -459,7 +459,7 @@
             </div>
         </div>
     </div>
-    
+
 
     <!-- Bootstrap core JavaScript-->
     <script src="../vendors/jquery/jquery.min.js"></script>
@@ -479,7 +479,7 @@
             addQuestion();
         })
 
-        
+
         function addQuestion(){
             $(document).ready(function() {
                 $('#card-items').append(
@@ -488,11 +488,11 @@
                         innerHTML: '<h6 class="text-center">Question no: <span class="counter">0</span></h6><input type="text" class="form-control" placeholder="Write you Question here" aria-label="Question" aria-describedby="basic-addon1"><input type="text" class="form-control" placeholder="First option" aria-label="Question" aria-describedby="basic-addon1"><input type="text" class="form-control" placeholder="Secoond option" aria-label="Question" aria-describedby="basic-addon1"><input type="text" class="form-control" placeholder="Third option" aria-label="Question" aria-describedby="basic-addon1"><i  onclick="deleteBtn(this)" class="fas fa-fw fa-trash text-danger float-right mt-4 delete-btn"></i><br>',
                         className: 'item mb-3 '
                     })
-                    
+
                 );
                 counter();
             });
-            
+
         }
 
         function counter(){
@@ -501,7 +501,7 @@
                 num[i].innerHTML=i+1;
             }
         }
-        
+
         function reorderQuestion(){
             var num = document.getElementsByClassName('counter');
             for(var i=0; i<num.length; i++){
@@ -517,18 +517,18 @@
         function quizTypeChanger(){
             const quizType = document.getElementById('inputGroupSelect01').value;
             const classLevel = document.getElementById('class-level');
-            const level = document.getElementById('level'); 
+            const level = document.getElementById('level');
             const subject = document.getElementById('subject');
             if(quizType==1){
                 classLevel.setAttribute('style', 'display: none');
                 subject.setAttribute('style', 'display: none');
                 level.removeAttribute('style', 'display: none');
-                
+
             }
             else{
                 classLevel.removeAttribute('style', 'display: block');
                 subject.removeAttribute('style', 'display: block');
-                level.setAttribute('style', 'display: none'); 
+                level.setAttribute('style', 'display: none');
             }
         }
 
