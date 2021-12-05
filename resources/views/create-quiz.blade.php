@@ -8,6 +8,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
+    <meta name="url" content="{{ url('/') }}">
+    <meta name="_token" content="{{ csrf_token() }}">
 
     <title>Quiz Master Create Quiz</title>
 
@@ -297,6 +299,7 @@
                     <!-- Page Heading -->
                     <h1 class="h3 text-head mb-4 text-gray-800">Create Quiz</h1>
 
+                <form action="javascript:void(0)" method="" id="quiz_save_form" enctype="multipart/form-data" onsubmit="saveQuiz()">
                     <div class="row">
 
                         <div class="col-lg-6">
@@ -401,7 +404,7 @@
                                                 </div>
                                                 <div class="modal-footer">
                                                 <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                                                <button type="button" onclick="saveQuiz();" class="btn btn-primary">Save changes</button>
+                                                <button type="submit" class="btn btn-primary">Save changes</button>
                                                 </div>
                                             </div>
                                             </div>
@@ -412,6 +415,7 @@
 
                         </div>
                     </div>
+                </form>
 
                 </div>
                 <!-- /.container-fluid -->
@@ -473,6 +477,10 @@
     <script>
         var count=1;
         var element;
+
+        var token = $("meta[name='_token']").attr("content");
+
+let path = $("meta[name='url']").attr("content");
         addQuestion();
         quizTypeChanger();
         document.getElementById('add-question').addEventListener("click", function(){
@@ -485,7 +493,7 @@
                 $('#card-items').append(
                     $('<div>').prop({
                         id: 'innerdiv',
-                        innerHTML: '<h6 class="text-center">Question no: <span class="counter">0</span></h6><input type="text" id="question" name="question" class="m-2 form-control" placeholder="Write you Question here" aria-label="Question" aria-describedby="basic-addon1"><input type="text" class=" m-2 form-control" id="first_option" name="first_option" placeholder="First option" aria-label="Question" aria-describedby="basic-addon1"><input type="text" class=" m-2 form-control" id="secound_option" name="secound_option" placeholder="Secoond option" aria-label="Question" aria-describedby="basic-addon1"><input type="text" class="m-2 form-control" id="third_option" name="third_option" placeholder="Third option" aria-label="Question" aria-describedby="basic-addon1"><input type="text" class="m-2 form-control" id="forth_option" name="forth_option" placeholder="Fourth option" aria-label="Question" aria-describedby="basic-addon1"><input type="text" class=" m-2 form-control" id="result" name="result" placeholder="Enter Your result" aria-label="Question" aria-describedby="basic-addon1"><i  onclick="deleteBtn(this)" class="fas fa-fw fa-trash text-danger float-right mt-4 delete-btn"></i><br>',
+                        innerHTML: '<h6 class="text-center">Question no: <span class="counter">0</span></h6><input type="text" id="question" name="question[]" class="m-2 form-control" placeholder="Write you Question here" aria-label="Question" aria-describedby="basic-addon1"><input type="text" class=" m-2 form-control" id="first_option" name="first_option[]" placeholder="First option" aria-label="Question" aria-describedby="basic-addon1"><input type="text" class=" m-2 form-control" id="secound_option" name="secound_option[]" placeholder="Secoond option" aria-label="Question" aria-describedby="basic-addon1"><input type="text" class="m-2 form-control" id="third_option" name="third_option[]" placeholder="Third option" aria-label="Question" aria-describedby="basic-addon1"><input type="text" class="m-2 form-control" id="forth_option" name="forth_option[]" placeholder="Fourth option" aria-label="Question" aria-describedby="basic-addon1"><input type="text" class=" m-2 form-control" id="result" name="result[]" placeholder="Enter Your result" aria-label="Question" aria-describedby="basic-addon1"><i  onclick="deleteBtn(this)" class="fas fa-fw fa-trash text-danger float-right mt-4 delete-btn"></i><br>',
                         className: 'item mb-3 '
                     })
 
@@ -533,19 +541,53 @@
         }
 
         function saveQuiz(){
-            let quiz_type = $('.quiz_type').val();
+
+             let form_data = $("#quiz_save_form").serializeArray();
+
+             let quiz_type = $('.quiz_type').val();
             let lavel = $('.lavel').val();
             let subject_name = $('.subject_name').val();
             let class_level = $('.class_level').val();
-            alert(class_level);
-            let question = $('#question').val();
-            let first_option = $('#first_option').val();
-            let secound_option = $('#secound_option').val();
-            let third_option = $('#third_option').val();
-            let forth_option = $('#forth_option').val();
-            let result = $('#result').val();
+        
 
-            console.log(quiz_type,lavel,subject_name,class_level,question,first_option,secound_option,third_option,forth_option);
+
+
+
+          //  let new_data = new FormData(this);
+
+            $.ajax({
+
+                type:"post",
+                url:path+'/quiz/save/',
+                data:{
+                    data:form_data,
+                    _token:token,
+                },
+                success: function (data) {
+                    alert("success");
+                }
+            });
+
+
+
+            // const quiz_list = [];
+
+            // let limit = $('#question').val();
+
+            // for (let i = 0; i < limit.length; i++) {
+            //      const quiz_list = array[i];
+
+            // }
+            // console.log(quiz_list);
+
+            // let question = $('#question').val();
+            // let first_option = $('#first_option').val();
+            // let secound_option = $('#secound_option').val();
+            // let third_option = $('#third_option').val();
+            // let forth_option = $('#forth_option').val();
+            // let result = $('#result').val();
+
+            // console.log(quiz_type,lavel,subject_name,class_level,question,first_option,secound_option,third_option,forth_option);
 
         }
     </script>

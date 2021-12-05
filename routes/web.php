@@ -82,6 +82,7 @@ Route::get('homepage',function(){
 
 
 Route::get('create-quiz',[QuestionController::class, 'index'])->name('create-quiz');
+Route::post('quiz/save',[QuestionController::class, 'store'])->name('quiz_save');
 
 
 
