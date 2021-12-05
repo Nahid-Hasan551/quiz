@@ -299,7 +299,9 @@
                     <!-- Page Heading -->
                     <h1 class="h3 text-head mb-4 text-gray-800">Create Quiz</h1>
 
-                <form action="javascript:void(0)" method="" id="quiz_save_form" enctype="multipart/form-data" onsubmit="saveQuiz()">
+                <form action="{{ route('quiz_save') }}" method="POST" id="quiz_save_form" enctype="multipart/form-data">
+                {{-- <form action="javascript:void(0)" method="" id="quiz_save_form" enctype="multipart/form-data" onsubmit="saveQuiz()"> --}}
+                    @csrf
                     <div class="row">
 
                         <div class="col-lg-6">
@@ -338,9 +340,9 @@
 
                                     <div id="level" class="input-group mb-3 mt-3">
                                         <div class="input-group-prepend">
-                                          <label class="input-group-text level" name="lavel" for="inputGroupSelect04">Level</label>
+                                          <label class="input-group-text "  for="inputGroupSelect04">Level</label>
                                         </div>
-                                        <select class="custom-select" id="inputGroupSelect04">
+                                        <select class="custom-select level"name="lavel" id="inputGroupSelect04">
                                           <option value="1">One</option>
                                           <option value="2">Two</option>
                                           <option value="3">Three</option>
@@ -542,31 +544,60 @@ let path = $("meta[name='url']").attr("content");
 
         function saveQuiz(){
 
-             let form_data = $("#quiz_save_form").serializeArray();
+            //  let form_data = $("#quiz_save_form").serialize();
+            //  let form_data = new FormData($("#quiz_save_form")[0]);
+            // var result = array();
 
-             let quiz_type = $('.quiz_type').val();
-            let lavel = $('.lavel').val();
-            let subject_name = $('.subject_name').val();
-            let class_level = $('.class_level').val();
-        
+//             var list = [];
+//             var a = [$('#question').val()];
+// alert(a.length);
+            // alert($('#question').val().length);
+            // for (let i = 0; i < $('#question').val().length; i++) {
+
+                // let question = $('#question').val();
+                // let first_option = $('#first_option').val();
+                // let secound_option = $('#secound_option').val();
+                // let third_option = $('#third_option').val();
+                // let forth_option = $('#forth_option').val();
+                // let  result = $('#result').val();
+
+            //     list = [
+            //         'question' = $('#question').val()[i];
+            //     ]
+
+            // }
+            // console.log(list);
 
 
+            //  let quiz_type = $('.quiz_type').val();
+            // let lavel = $('.lavel').val();
+            // let subject_name = $('.subject_name').val();
+            // let class_level = $('.class_level').val();
 
+            // let question = $('#question').val();
+            // let first_option = $('#first_option').val();
+            // let secound_option = $('#secound_option').val();
+            // let third_option = $('#third_option').val();
+            // let forth_option = $('#forth_option').val();
+            // let  result = $('#result').val();
 
           //  let new_data = new FormData(this);
 
-            $.ajax({
 
-                type:"post",
-                url:path+'/quiz/save/',
-                data:{
-                    data:form_data,
-                    _token:token,
-                },
-                success: function (data) {
-                    alert("success");
-                }
-            });
+
+            // $.ajax({
+
+            //     type:"post",
+            //     url:path+'/quiz/save/',
+            //     data:{
+            //         quiz_type,lavel,subject_name,class_level,result,forth_option,third_option,secound_option,first_option,question,
+            //         _token:token,
+            //     },
+            //     dataType: 'json',
+            //     success: function (data) {
+            //         alert("success");
+            //     }
+            // });
 
 
 

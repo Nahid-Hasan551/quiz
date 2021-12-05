@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-
+use App\Models\Question;
 
 class QuestionController extends Controller
 {
@@ -39,6 +39,27 @@ class QuestionController extends Controller
   {
 
     dd($request->all());
+
+    $quiz = [
+        'question_id'  => $request->question_id,
+        'quiz_name'    => $request->quiz_name,
+        'type'         => $request->quiz_type,
+        'status'       => 1,
+        'lavel'        => $request->class_level,
+        'subject_name' => $request->subject_name,
+
+    ];
+
+
+
+
+    $question = new Question();
+
+    $response = $question->question_list($request);
+
+    dd($response);
+
+
   }
 
   /**
