@@ -10,7 +10,6 @@ class CreateQuizTable extends Migration {
 	{
 		Schema::create('quiz', function(Blueprint $table) {
 			$table->increments('id');
-			$table->integer('question_id')->nullable();
 			$table->string('quiz_name', 100);
 			$table->tinyInteger('type');
 			$table->tinyInteger('status')->default('0');
@@ -21,6 +20,8 @@ class CreateQuizTable extends Migration {
 			$table->softDeletes();
 			$table->mediumInteger('created_by')->nullable();
 		});
+
+
 	}
 
 	public function down()

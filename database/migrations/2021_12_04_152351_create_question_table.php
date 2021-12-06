@@ -12,8 +12,8 @@ class CreateQuestionTable extends Migration {
 			$table->integer('quiz_code')->unsigned();
 			$table->string('question', 200)->nullable();
 			$table->string('first_option', 100)->nullable();
-			$table->string('secound_question', 100)->nullable();
-			$table->string('third_question', 100)->nullable();
+			$table->string('secound_option', 100)->nullable();
+			$table->string('third_option', 100)->nullable();
 			$table->string('fourth_option', 100)->nullable();
 			$table->tinyInteger('result');
 			$table->timestamps();

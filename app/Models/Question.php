@@ -2,9 +2,10 @@
 
 namespace App\Models;
 
-
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Auth;
 
 class Question extends Model
 {
@@ -18,7 +19,7 @@ class Question extends Model
 
 
 
-    public function question_list($request = null){
+    public function question_data($request, $quiz_last_id){
 
         $question_list = [];
 
@@ -28,25 +29,23 @@ class Question extends Model
                 continue;
             }
 
-
             $question_list[] = [
 
+                'quiz_code' => (isset($quiz_last_id) ? $quiz_last_id : 0),
                 'question' => $request->question[$i],
                 'first_option' => $request->first_option[$i],
                 'secound_option' => $request->secound_option[$i],
                 'third_option' => $request->third_option[$i],
-                'forth_option' => $request->forth_option[$i],
+                'fourth_option' => $request->forth_option[$i],
                 'result' => $request->result[$i],
 
-                // 'type' => $request->type,
-
-                // 'created_by' => $request->created_by,
-                // 'created_time' => Carbon::now(),
-                // 'created_by_ip' => $request->ip(),
+                'created_at' => Carbon::now(),
+                'created_by' => (isset(Auth::user()->id) ? Auth::user()->id : 0 ),
 
             ];
 
         }
+        // dd($question_list);
         return $question_list;
     }
 

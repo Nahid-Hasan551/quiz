@@ -11,8 +11,14 @@
     <meta name="url" content="{{ url('/') }}">
     <meta name="_token" content="{{ csrf_token() }}">
 
+
+
+    <script src="sweetalert2.all.min.js"></script>
+
     <title>Quiz Master Create Quiz</title>
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" integrity="sha512-3pIirOrwegjM6erE5gPSwkUzO+3cTjpnV9lexlNZqvupR64iZBnOOTiiLPb9M36zpMScbmUNIcHUqKD47M719g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <!-- Custom fonts for this template-->
     <link href="../vendors/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link
@@ -542,87 +548,11 @@ let path = $("meta[name='url']").attr("content");
             }
         }
 
-        function saveQuiz(){
 
-            //  let form_data = $("#quiz_save_form").serialize();
-            //  let form_data = new FormData($("#quiz_save_form")[0]);
-            // var result = array();
-
-//             var list = [];
-//             var a = [$('#question').val()];
-// alert(a.length);
-            // alert($('#question').val().length);
-            // for (let i = 0; i < $('#question').val().length; i++) {
-
-                // let question = $('#question').val();
-                // let first_option = $('#first_option').val();
-                // let secound_option = $('#secound_option').val();
-                // let third_option = $('#third_option').val();
-                // let forth_option = $('#forth_option').val();
-                // let  result = $('#result').val();
-
-            //     list = [
-            //         'question' = $('#question').val()[i];
-            //     ]
-
-            // }
-            // console.log(list);
-
-
-            //  let quiz_type = $('.quiz_type').val();
-            // let lavel = $('.lavel').val();
-            // let subject_name = $('.subject_name').val();
-            // let class_level = $('.class_level').val();
-
-            // let question = $('#question').val();
-            // let first_option = $('#first_option').val();
-            // let secound_option = $('#secound_option').val();
-            // let third_option = $('#third_option').val();
-            // let forth_option = $('#forth_option').val();
-            // let  result = $('#result').val();
-
-          //  let new_data = new FormData(this);
-
-
-
-            // $.ajax({
-
-            //     type:"post",
-            //     url:path+'/quiz/save/',
-            //     data:{
-            //         quiz_type,lavel,subject_name,class_level,result,forth_option,third_option,secound_option,first_option,question,
-            //         _token:token,
-            //     },
-            //     dataType: 'json',
-            //     success: function (data) {
-            //         alert("success");
-            //     }
-            // });
-
-
-
-            // const quiz_list = [];
-
-            // let limit = $('#question').val();
-
-            // for (let i = 0; i < limit.length; i++) {
-            //      const quiz_list = array[i];
-
-            // }
-            // console.log(quiz_list);
-
-            // let question = $('#question').val();
-            // let first_option = $('#first_option').val();
-            // let secound_option = $('#secound_option').val();
-            // let third_option = $('#third_option').val();
-            // let forth_option = $('#forth_option').val();
-            // let result = $('#result').val();
-
-            // console.log(quiz_type,lavel,subject_name,class_level,question,first_option,secound_option,third_option,forth_option);
-
-        }
     </script>
 
+   @include('sweetalert::alert')
+   @include('sweetalert::alert', ['cdn' => "https://cdn.jsdelivr.net/npm/sweetalert2@9"])
 </body>
 
 </html>
