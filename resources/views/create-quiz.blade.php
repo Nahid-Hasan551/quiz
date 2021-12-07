@@ -324,15 +324,15 @@
                                         </div>
                                         <select onchange="quizTypeChanger()" name="quiz_type" class="quiz_type custom-select" id="inputGroupSelect01">
                                           <option  value="1">Free Quiz</option>
-                                          <option selected value="2">Classic Quiz</option>
+                                          <option  value="2">Classic Quiz</option>
                                         </select>
                                     </div>
 
-                                    <div id="class-level" class="input-group mb-3 mt-3">
+                                    <div id="level_class_id" class="input-group mb-3 mt-3">
                                         <div class="input-group-prepend">
-                                          <label class="input-group-text" for="inputGroupSelect01">Class level</label>
+                                          <label class="input-group-text" for="inputGroupSelect02">Class level</label>
                                         </div>
-                                        <select class="class_level custom-select" name="class_level" id="inputGroupSelect02">
+                                        <select class="custom-select" name="level_class_id" id="inputGroupSelect02">
                                           <option value="1">SSC</option>
                                           <option value="2">HSC</option>
                                           <option value="3">University Admission</option>
@@ -532,7 +532,7 @@ let path = $("meta[name='url']").attr("content");
 
         function quizTypeChanger(){
             const quizType = document.getElementById('inputGroupSelect01').value;
-            const classLevel = document.getElementById('class-level');
+            const classLevel = document.getElementById('level_class_id');
             const level = document.getElementById('level');
             const subject = document.getElementById('subject');
             if(quizType==1){
@@ -541,7 +541,7 @@ let path = $("meta[name='url']").attr("content");
                 level.removeAttribute('style', 'display: none');
 
             }
-            else{
+            if(quizType==2){
                 classLevel.removeAttribute('style', 'display: block');
                 subject.removeAttribute('style', 'display: block');
                 level.setAttribute('style', 'display: none');

@@ -22,7 +22,27 @@ class QuestionController extends Controller
    */
   public function index()
   {
-      return view('create-quiz');
+      return view('freequiz');
+
+  }
+
+  public function lavel_data($lavel){
+
+    $quiz_info = DB::table('quiz AS QZ')
+                    ->select('QST.*')
+                    ->join('question AS QST',function($join){
+                        $join->on('QST.quiz_code','=','QZ.id')
+                        ->whereNull('QST.deleted_at');
+                    })
+                    ->where('QZ.lavel','=',$lavel)
+                    ->where('QZ.type','=',1)
+                    ->where('QZ.status','=',1)
+                    ->whereNull('QZ.deleted_at')
+                    ->get();
+
+                    // dd($quiz_info);
+
+      return view('freequiz',compact('quiz_info'));
 
   }
 
@@ -33,7 +53,7 @@ class QuestionController extends Controller
    */
   public function create()
   {
-
+    return view('create-quiz');
   }
 
   /**
@@ -43,21 +63,16 @@ class QuestionController extends Controller
    */
   public function store(Request $request)
   {
-
-    // dd($request->all());
-
     $quiz = [
         'quiz_name' => (isset($request->quiz_name) ? $request->quiz_name : 'null'),
         'type'         => $request->quiz_type,
-        'status'       => 1,
-        'lavel'        => $request->lavel,
-        'class_level'  => $request->class_level,
+        'lavel'        => (isset($request->lavel) ? $request->lavel : 0),
+        'class_level'  => (($request->quiz_type == 1) ? 0 : 1),
         'subject_name' => $request->subject_name,
         'created_at'   => Carbon::now(),
         'created_by'   => (isset(Auth::user()->id) ? Auth::user()->id : 0 ),
 
     ];
-    // dd($quiz);
 
     DB::beginTransaction();
 
@@ -68,20 +83,21 @@ class QuestionController extends Controller
         $question = new Question();
 
         $response = $question->question_data($request,$quiz_last_id);
-    // dd($response);
+
         DB::table('question')->insert($response);
 
         DB::commit();
 
         Alert::success('success','New Quiz and Question Successfully Added');
+
         return redirect()->back();
 
     } catch (Exception $e) {
-        dd($e);
 
         DB::rollBack();
 
         Alert::success('error','Opps... Fail To Save');
+
         return redirect()->back();
     }
 
