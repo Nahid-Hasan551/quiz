@@ -548,6 +548,17 @@ let path = $("meta[name='url']").attr("content");
             }
         }
 
+        // function save_quiz(){
+        //     var list = [];
+
+
+        //     for (let i = 0; i < array.length; i++) {
+
+        //         list[i] = ;
+
+        //     }
+        // }
+
 
     </script>
 
