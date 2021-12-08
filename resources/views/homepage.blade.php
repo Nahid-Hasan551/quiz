@@ -162,7 +162,7 @@
                                     </li>
 
                                     <li class="nav-item">
-                                        <a href="/freequiz">Free Quiz</a>
+                                        <a href="{{ route('freequiz') }}">Free Quiz</a>
                                         <ul class="sub-menu">
                                             <li><a href="contact.html">Lavel 1</a></li>
                                             <li><a href="contact-2.html">Lavel 2</a></li>

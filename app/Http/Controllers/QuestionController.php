@@ -22,6 +22,19 @@ class QuestionController extends Controller
    */
   public function index()
   {
+    // $quiz_info = DB::table('quiz AS QZ')
+    //             ->select('QST.*')
+    //             ->join('question AS QST',function($join){
+    //                 $join->on('QST.quiz_code','=','QZ.id')
+    //                 ->whereNull('QST.deleted_at');
+    //             })
+    //             // ->where('QZ.lavel','=',$lavel)
+    //             ->where('QZ.type','=',1)
+    //             ->where('QZ.status','=',1)
+    //             ->whereNull('QZ.deleted_at')
+    //             ->get();
+
+
       return view('freequiz');
 
   }
@@ -42,7 +55,19 @@ class QuestionController extends Controller
 
                     // dd($quiz_info);
 
-      return view('freequiz',compact('quiz_info'));
+    //   return view('freequiz',compact('quiz_info'));
+    if(isset($quiz_info)){
+      return response()->json([
+          'data' => $quiz_info,
+          'status' => "success",
+          'message' => "successfully data show",
+      ]);
+    }else{
+        return response()->json([
+            'status' => "error",
+            'message' => "invalid data...",
+        ]);
+    }
 
   }
 
