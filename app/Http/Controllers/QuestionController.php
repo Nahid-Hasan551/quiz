@@ -56,6 +56,10 @@ class QuestionController extends Controller
                     // dd($quiz_info);
 
     //   return view('freequiz',compact('quiz_info'));
+
+    //   redirect()->route('freequiz')->with('data',$quiz_info);
+
+    //    view('freequiz',compact('quiz_info'));
     if(isset($quiz_info)){
       return response()->json([
           'data' => $quiz_info,

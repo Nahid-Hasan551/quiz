@@ -141,7 +141,7 @@
             </div>
             <div class="question-section" id="question_list">
 
-                <div id="qst-1" class="">
+                {{-- <div id="qst-1" class="">
                     <div id="qiestion1" class="question">
 
                         <h3 id="question"></h3>
@@ -181,10 +181,7 @@
                             </tbody>
                         </table>
                     </div>
-                </div>
-
-
-
+                </div> --}}
                 {{-- <div id="qst-2" class="quiz-questions hide">
                     <div id="qiestion1" class="question">
                         <h3>What is your gf name?</h3>
@@ -289,97 +286,53 @@
                 success: function (response) {
 
                     if(response.status == "success"){
+                        $("#myModal").show();
+                        var list = "";
 
-                        var quizs = Object.values(response.data);
-                        console.log(quizs);
+                        response.data.forEach(function(item) {
 
-                        quizs.forEach(function(item) {
-
-                        // $("#question_list").html(
-                        //     '<div class="modal-content">'+
-                        //         '<div class="header">'+
-                        //             '<div class="row">'+
-                        //                 '<div class="col-md-4">'+
-                        //                     '<h4>Quiz Name</h4>'+
-                        //                 '</div>'+
-                        //                 '<div class="col-md-4">'+
-                        //                     '<h4>timer</h4>'+
-                        //                 '</div>'+
-                        //                 '<div class="col-md-4">'+
-                        //                     '<i class="close"><span onclick="closeModal();">&times;</span></i>'+
-                        //                 '</div>'+
-                        //             '</div>'+
-                        //         '</div>'+
-                        //         '<div class="question-section" id="question_list">'+
-                        //         '<div id="qst-1" class="">' +
-                        //             '<div id="qiestion1" class="question">'+
-                        //                 '<h3>' + item.question + '</h3>'+
-                        //                 '<h3 id="question"></h3>'+
-                        //             '</div>'+
-                        //             '<div class="options">'+
-                        //                 '<table class="table table-dark">'+
-                        //                     '<tbody>'+
-                        //                         '<tr class="table-active">'+
-                        //                             '<td><input type="radio" name="question" id="option1">'+
-                        //                                 '<label for="option1" id="first_opt">' +item.first_option+'</label>'+
-                        //                             '</td>'+
-                        //                         '</tr>'+
-                        //                         '<tr>'+
-                        //                             '<td><input type="radio" name="question" id="option2">'+
-                        //                                 '<label for="option2" id="secound_option">'+item.secound_option+'</label>'+
-                        //                             '</td>'+
-                        //                         '</tr>'+
-                        //                         '<tr>'+
-                        //                             '<td><input type="radio" name="question" id="option3">'+
-                        //                                 '<label for="option3" id="third_option">' + item.third_option + '</label>'+
-                        //                             '</td>'+
-                        //                         '</tr>'+
-                        //                         '<tr>'+
-                        //                             '<td>'+
-                        //                                 '<input type="radio" name="question" id="option4">'+
-                        //                                 '<label for="option4" id="fourth_option">'+item.fourth_option+'</label>'+
-                        //                             '</td>'+
-                        //                         '</tr>'+
-                        //                     '</tbody>'+
-                        //                 '</table>'+
-                        //             '</div>'+
-                        //         '</div>'+
-                        //     '</div>'+
-                        //     '<div class="footer">'+
-                        //         '<div class="row">'+
-                        //             '<div class="col-md-6">'+
-                        //                 '<nav aria-label="...">'+
-                        //                     '<ul class="pagination">'+
-                        //                         '<li class="page-item disabled">'+
-                        //                             '<span class="page-link">Previous</span>'+
-                        //                         '</li>'+
-                        //                         '<li class="page-item">'+
-                        //                             '<a onclick="changeQuestion()" class="page-link" href="#">Next</a>'+
-                        //                         '</li>'+
-                        //                     '</ul>'+
-                        //                 '</nav>'+
-                        //             '</div>'+
-                        //             '<div class="col-md-6">'+
-                        //                 '<button class="submit-btn btn btn-primary">Submit</button>'+
-                        //             '</div>'+
-                        //         '</div>'+
-                        //     '</div>'+
-
-                        // '</div>'
-                        //     );
-                            $("#myModal").show();
-                            $('#qiestion1').html("<h1>"+item.question+"</h1>");
-                            $('#first_opt').html("<span>"+item.first_option+"</span>");
-                            $('#secound_option').html("<span>"+item.secound_option+"</span>");
-                            $('#third_option').html("<span>"+item.third_option+"</span>");
-                            $('#fourth_option').html("<span>"+item.fourth_option+"</span>");
-
-                            });
-                            // $(selector).html(htmlString);
+                           list +=
+                                    '<div id="qst-1" class="">' +
+                                        '<div id="qiestion1" class="question">'+
+                                            '<h3>' + item.question + '</h3>'+
+                                            '<h3 id="question"></h3>'+
+                                        '</div>'+
+                                        '<div class="options">'+
+                                            '<table class="table table-dark">'+
+                                                '<tbody>'+
+                                                    '<tr class="table-active">'+
+                                                        '<td><input type="radio" name="question" id="option1">'+
+                                                            '<label for="option1" id="first_opt">' +item.first_option+'</label>'+
+                                                        '</td>'+
+                                                    '</tr>'+
+                                                    '<tr>'+
+                                                        '<td><input type="radio" name="question" id="option2">'+
+                                                            '<label for="option2" id="secound_option">'+item.secound_option+'</label>'+
+                                                        '</td>'+
+                                                    '</tr>'+
+                                                    '<tr>'+
+                                                        '<td><input type="radio" name="question" id="option3">'+
+                                                            '<label for="option3" id="third_option">' + item.third_option + '</label>'+
+                                                        '</td>'+
+                                                    '</tr>'+
+                                                    '<tr>'+
+                                                        '<td>'+
+                                                            '<input type="radio" name="question" id="option4">'+
+                                                            '<label for="option4" id="fourth_option">'+item.fourth_option+'</label>'+
+                                                        '</td>'+
+                                                    '</tr>'+
+                                                '</tbody>'+
+                                            '</table>'+
+                                        '</div>'+
+                                    '</div>'
 
 
+                        });
 
+
+                        $("#question_list").html(list);
                     }
+
 
 
                     // console.log(response.data);
