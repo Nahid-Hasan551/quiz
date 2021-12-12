@@ -88,7 +88,7 @@ Route::post('quiz/save',[QuestionController::class, 'store'])->name('quiz_save')
 
 Route::get('freequiz',[QuestionController::class, 'index'])->name('freequiz');
 
-Route::get('freequiz/{lavel}',[QuestionController::class, 'lavel_data'])->name('freequiz_lavel');
+Route::get('freequiz/{lavel}',[QuestionController::class, 'index'])->name('freequiz_lavel');
 
 Route::post('freequiz/result',[QuestionController::class, 'result_store'])->name('result_store');
 

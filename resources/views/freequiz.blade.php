@@ -150,9 +150,49 @@
 
             <form action="{{ route('result_store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
+
+               @isset($quiz_info)
+                @foreach($quiz_info as $key => $value)
+
                 <div class="question-section" id="question_list">
 
+                    <input type="hidden" value="{{ $value->id }}" name="qst_id[{{ $key }}]">
+                    <div id="qst-1" class="">
+                        <div id="qiestion1" class="question">
+                            <h3>{{ $value->question }}</h3>
+                            <h3 id="question"></h3>
+                        </div>
+                        <div class="options">
+                            <table class="table table-dark">
+                                <tbody>
+                                    <tr class="table-active">
+                                        <td><input type="radio" name="option[{{ $key }}]" value="1" id="first_opt[{{ $key }}]">
+                                            <label for="first_opt[{{ $key }}]" id="first_opt">{{ $value->first_option }}</label>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="radio" name="option[{{ $key }}]" value="2" id="secound_option[{{ $key }}]">
+                                            <label for="secound_option[{{ $key }}]" id="secound_option">{{ $value->secound_option }}</label>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="radio" name="option[{{ $key }}]" value="3" id="third_option[{{ $key }}]">
+                                            <label for="third_option[{{ $key }}]" id="third_option">{{ $value->third_option  }}</label>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <input type="radio" name="option[{{ $key }}]" value="4" id="fourth_option[{{ $key }}]">
+                                            <label for="fourth_option[{{ $key }}]" id="fourth_option">{{ $value->fourth_option }}</label>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
+            @endforeach
+            @endisset
 
                 <div class="footer">
                     <div class="row">
@@ -184,68 +224,78 @@
     </div>
     {{-- <script src="../vendors/jquery/jquery.min.js"></script> --}}
     <script>
-
         function lavel_one_quiz(lavel_id){
+            $("#myModal").show();
+
             $.ajax({
                 type: "GET",
                 url: "freequiz/" + lavel_id,
                 dataType: "json",
-                success: function (response) {
-
-                    if(response.status == "success"){
-                        $("#myModal").show();
-                        var list = "";
-
-                        response.data.forEach(function(item) {
-
-                           list +=
-                           '<input type="hidden" value="'+item.id+'" name="qst_id">'+
-                            '<div id="qst-1" class="">' +
-                                '<div id="qiestion1" class="question">'+
-                                    '<h3>' + item.question + '</h3>'+
-                                    '<h3 id="question"></h3>'+
-                                '</div>'+
-                                '<div class="options">'+
-                                    '<table class="table table-dark">'+
-                                        '<tbody>'+
-                                            '<tr class="table-active">'+
-                                                '<td><input type="radio" name="question" id="option1">'+
-                                                    '<label for="option1" id="first_opt">' +item.first_option+'</label>'+
-                                                '</td>'+
-                                            '</tr>'+
-                                            '<tr>'+
-                                                '<td><input type="radio" name="question" id="option2">'+
-                                                    '<label for="option2" id="secound_option">'+item.secound_option+'</label>'+
-                                                '</td>'+
-                                            '</tr>'+
-                                            '<tr>'+
-                                                '<td><input type="radio" name="question" id="option3">'+
-                                                    '<label for="option3" id="third_option">' + item.third_option + '</label>'+
-                                                '</td>'+
-                                            '</tr>'+
-                                            '<tr>'+
-                                                '<td>'+
-                                                    '<input type="radio" name="question" id="option4">'+
-                                                    '<label for="option4" id="fourth_option">'+item.fourth_option+'</label>'+
-                                                '</td>'+
-                                            '</tr>'+
-                                        '</tbody>'+
-                                    '</table>'+
-                                '</div>'+
-                            '</div>'
-                        });
-
-
-                        $("#question_list").html(list);
-                    }
-
-
-
-                    // console.log(response.data);
-
-                }
             });
+
         }
+
+        // function lavel_one_quiz(lavel_id){
+        //     $.ajax({
+        //         type: "GET",
+        //         url: "freequiz/" + lavel_id,
+        //         dataType: "json",
+        //         success: function (response) {
+
+        //             if(response.status == "success"){
+        //                 $("#myModal").show();
+        //                 var list = "";
+
+        //                 response.data.forEach(function(item) {
+
+        //                    list +=
+        //                    '<input type="hidden" value="'+item.id+'" name="qst_id[]">'+
+        //                     '<div id="qst-1" class="">' +
+        //                         '<div id="qiestion1" class="question">'+
+        //                             '<h3>' + item.question + '</h3>'+
+        //                             '<h3 id="question"></h3>'+
+        //                         '</div>'+
+        //                         '<div class="options">'+
+        //                             '<table class="table table-dark">'+
+        //                                 '<tbody>'+
+        //                                     '<tr class="table-active">'+
+        //                                         '<td><input type="radio" name="first_opt[]" id="option1">'+
+        //                                             '<label for="option1" id="first_opt">' +item.first_option+'</label>'+
+        //                                         '</td>'+
+        //                                     '</tr>'+
+        //                                     '<tr>'+
+        //                                         '<td><input type="radio" name="first_opt[]" id="option2">'+
+        //                                             '<label for="option2" id="secound_option">'+item.secound_option+'</label>'+
+        //                                         '</td>'+
+        //                                     '</tr>'+
+        //                                     '<tr>'+
+        //                                         '<td><input type="radio" name="first_opt[]" id="option3">'+
+        //                                             '<label for="option3" id="third_option">' + item.third_option + '</label>'+
+        //                                         '</td>'+
+        //                                     '</tr>'+
+        //                                     '<tr>'+
+        //                                         '<td>'+
+        //                                             '<input type="radio" name="first_opt[]" id="option4">'+
+        //                                             '<label for="option4" id="fourth_option">'+item.fourth_option+'</label>'+
+        //                                         '</td>'+
+        //                                     '</tr>'+
+        //                                 '</tbody>'+
+        //                             '</table>'+
+        //                         '</div>'+
+        //                     '</div>'
+        //                 });
+
+
+        //                 $("#question_list").html(list);
+        //             }
+
+
+
+        //             // console.log(response.data);
+
+        //         }
+        //     });
+        // }
 
         function closeModal(){
             $("#myModal").hide();

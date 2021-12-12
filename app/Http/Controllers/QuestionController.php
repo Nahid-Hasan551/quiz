@@ -10,6 +10,9 @@ use Exception;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use RealRashid\SweetAlert\Facades\Alert;
+
+use function PHPUnit\Framework\isNull;
+
 // Use Alert;
 
 class QuestionController extends Controller
@@ -20,22 +23,33 @@ class QuestionController extends Controller
    *
    * @return Response
    */
-  public function index()
+  public function index($lavel = null)
   {
-    // $quiz_info = DB::table('quiz AS QZ')
-    //             ->select('QST.*')
-    //             ->join('question AS QST',function($join){
-    //                 $join->on('QST.quiz_code','=','QZ.id')
-    //                 ->whereNull('QST.deleted_at');
-    //             })
-    //             // ->where('QZ.lavel','=',$lavel)
-    //             ->where('QZ.type','=',1)
-    //             ->where('QZ.status','=',1)
-    //             ->whereNull('QZ.deleted_at')
-    //             ->get();
+
+    // if(!is_null($lavel)){
+
+        $quiz_info = DB::table('quiz AS QZ')
+                    ->select('QST.*')
+                    ->join('question AS QST',function($join){
+                        $join->on('QST.quiz_code','=','QZ.id')
+                        ->whereNull('QST.deleted_at');
+                    })
+                    // ->where('QZ.lavel','=',$lavel)
+                    ->where('QZ.type','=',1)
+                    ->where('QZ.status','=',1)
+                    ->whereNull('QZ.deleted_at')
+                    ->get();
+
+        return view('freequiz',compact('quiz_info'));
+
+    // }else{
+
+    //     return view('freequiz');
+
+    // }
 
 
-      return view('freequiz');
+
 
   }
 
@@ -143,7 +157,39 @@ class QuestionController extends Controller
    */
   public function result_store(Request $request)
   {
-      dd($request->all());
+    //   dd($request->all());
+
+      $qst_id = $request->qst_id;
+      $options = $request->option;
+
+    //   dd($qst_id,$options);
+    $right_answer = 0;
+    $wrong_answer = 0;
+
+      foreach ($qst_id as $key => $value) {
+        //   dd($options[$key]);
+        //   echo $value."<br>";
+          $qst_result = DB::table('question')->where('id',$value)->first();
+        //   echo $qst_result->result."<br>";
+
+          if($qst_result->result == $options[$key]){
+            //   echo "result right<br>";
+              $right_answer += 1;
+          }else{
+            //   echo "result is Wrong<br>";
+              $wrong_answer += 1;
+          }
+      }
+
+      dd($right_answer,$wrong_answer);
+
+      
+
+    //   foreach ($options as $key => $value2) {
+    //     echo $value2."<br>";
+    // }
+
+
 
   }
 
