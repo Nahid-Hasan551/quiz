@@ -34,8 +34,8 @@
             <div class="col-md-3 col-sm-6">
               <div class="card">
                 <div class="card-body">
-                  <h4 class="level-title"> <b>Level One</b> </h4>
-                  <a href="#" id="myBtn" class="btn btn-primary">Play</a>
+                  <h4 class="level-title"> <b>SSC Preparation</b> </h4>
+                  <a href="subjects-ssc" id="myBtn" class="btn btn-primary">Play</a>
                 </div>
               </div>
             </div>
@@ -43,7 +43,16 @@
             <div class="col-md-3 col-sm-6">
                 <div class="card">
                   <div class="card-body">
-                    <h4 class="level-title"> <b>Level Two</b> </h4>
+                    <h4 class="level-title"> <b>HSC Preparation</b> </h4>
+                    <a href="subjects-hsc" class="btn btn-primary">Play</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-3 col-sm-6">
+                <div class="card">
+                  <div class="card-body">
+                    <h4 class="level-title"> <b>Admission</b> </h4>
                     <a href="#" class="btn btn-primary">Play</a>
                   </div>
                 </div>
@@ -52,17 +61,8 @@
               <div class="col-md-3 col-sm-6">
                 <div class="card">
                   <div class="card-body">
-                    <h4 class="level-title"> <b>Level Three</b> </h4>
-                    <a href="#" class="btn btn-primary">Play</a>
-                  </div>
-                </div>
-              </div>
-
-              <div class="col-md-3 col-sm-6">
-                <div class="card">
-                  <div class="card-body">
-                    <h4 class="level-title"> <b>Level Four</b> </h4>
-                    <a href="#" id="last-btn" onclick="fun()" class="btn btn-primary">Play</a>
+                    <h4 class="level-title"> <b>BCS Preparation</b> </h4>
+                    <a href="#" id="last-btn" class="btn btn-primary">Play</a>
                   </div>
                 </div>
               </div>

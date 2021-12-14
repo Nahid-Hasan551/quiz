@@ -41,6 +41,12 @@ Route::get('freequiz',function(){
 Route::get('classicquiz',function(){
     return view('classicquiz');
 });
+Route::get('subjects-ssc',function(){
+    return view('subjects-ssc');
+});
+Route::get('subjects-hsc',function(){
+    return view('subjects-hsc');
+});
 Route::get('level',function(){
     return view('level');
 });
