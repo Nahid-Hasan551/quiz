@@ -2,6 +2,11 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\QuizController;
+use App\Http\Controllers\AppQuestionController;
+use App\Providers\RouteServiceProvider;
+
+
+use App\Http\Controllers\QuestionController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,8 +18,11 @@ use App\Http\Controllers\QuizController;
 |
 */
 
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 Route::get('/', function () {
-    return view('welcome');
+    return view('homepage');
 });
 Route::get('homepage',function(){
     return view('homepage');
@@ -35,9 +43,10 @@ Route::get('registration',function(){
     return view('registration');
 });
 
-Route::get('freequiz',function(){
-    return view('freequiz');
-});
+// Route::get('freequiz',function(){
+//     return view('freequiz');
+// });
+
 Route::get('classicquiz',function(){
     return view('classicquiz');
 });
@@ -53,9 +62,9 @@ Route::get('level',function(){
 Route::get('dashboard',function(){
     return view('dashboard');
 });
-Route::get('create-quiz',function(){
-    return view('create-quiz');
-});
+// Route::get('create-quiz',function(){
+//     return view('create-quiz');
+// });
 Route::get('manage-quiz',function(){
     return view('manage-quiz');
 });
@@ -73,3 +82,24 @@ Route::get('manage-quiz',function(){
 Route::get('homepage',function(){
     return view('homepage');
 });
+
+
+
+
+
+
+Route::get('create-quiz',[QuestionController::class, 'create'])->name('create-quiz');
+
+Route::post('quiz/save',[QuestionController::class, 'store'])->name('quiz_save');
+
+Route::get('freequiz',[QuestionController::class, 'index'])->name('freequiz');
+
+Route::get('freequiz/{lavel}',[QuestionController::class, 'index'])->name('freequiz_lavel');
+
+Route::post('freequiz/result',[QuestionController::class, 'result_store'])->name('result_store');
+
+
+
+// Route::resource('question', 'QuestionController');
+
+// Route::resource('quiz', 'QuizController');
