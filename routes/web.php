@@ -65,9 +65,9 @@ Route::get('dashboard',function(){
 // Route::get('create-quiz',function(){
 //     return view('create-quiz');
 // });
-Route::get('manage-quiz',function(){
-    return view('manage-quiz');
-});
+// Route::get('manage-quiz',function(){
+//     return view('manage-quiz');
+// });
 
 //Route::get('create_quiz_test',[QuizController::class, 'create_quiz_test'])->name('free_quz');
 
@@ -84,7 +84,9 @@ Route::get('homepage',function(){
 });
 
 
-
+Route::get('testing',function(){
+    return view('other_quiz');
+});
 
 
 
@@ -94,7 +96,9 @@ Route::post('quiz/save',[QuestionController::class, 'store'])->name('quiz_save')
 
 Route::get('freequiz',[QuestionController::class, 'index'])->name('freequiz');
 
-Route::get('freequiz/{lavel}',[QuestionController::class, 'index'])->name('freequiz_lavel');
+Route::get('freequiz/{lavel_one}',[QuestionController::class, 'index'])->name('freequiz_lavel');
+
+Route::get('freequiz/other/{lavel}',[QuestionController::class, 'lavel_data'])->name('freequiz_other_lavel');
 
 Route::post('freequiz/result',[QuestionController::class, 'result_store'])->name('result_store');
 

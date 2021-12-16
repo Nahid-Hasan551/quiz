@@ -23,7 +23,7 @@ class QuestionController extends Controller
    *
    * @return Response
    */
-  public function index($lavel = null)
+  public function index($lavel_one = null)
   {
 
     // if(!is_null($lavel)){
@@ -34,11 +34,13 @@ class QuestionController extends Controller
                         $join->on('QST.quiz_code','=','QZ.id')
                         ->whereNull('QST.deleted_at');
                     })
-                    // ->where('QZ.lavel','=',$lavel)
+                    ->where('QZ.lavel',1)
                     ->where('QZ.type','=',1)
                     ->where('QZ.status','=',1)
                     ->whereNull('QZ.deleted_at')
                     ->get();
+
+                    // dd($quiz_info);
 
         return view('freequiz',compact('quiz_info'));
 
@@ -55,37 +57,26 @@ class QuestionController extends Controller
 
   public function lavel_data($lavel){
 
-    $quiz_info = DB::table('quiz AS QZ')
+    // dd($lavel);
+    $other_lavel_data = DB::table('quiz AS QZ')
                     ->select('QST.*')
                     ->join('question AS QST',function($join){
                         $join->on('QST.quiz_code','=','QZ.id')
                         ->whereNull('QST.deleted_at');
                     })
-                    ->where('QZ.lavel','=',$lavel)
+                    ->where('QZ.lavel',$lavel)
                     ->where('QZ.type','=',1)
                     ->where('QZ.status','=',1)
                     ->whereNull('QZ.deleted_at')
                     ->get();
 
-                    // dd($quiz_info);
 
-    //   return view('freequiz',compact('quiz_info'));
 
-    //   redirect()->route('freequiz')->with('data',$quiz_info);
-
-    //    view('freequiz',compact('quiz_info'));
-    if(isset($quiz_info)){
-      return response()->json([
-          'data' => $quiz_info,
-          'status' => "success",
-          'message' => "successfully data show",
-      ]);
-    }else{
-        return response()->json([
-            'status' => "error",
-            'message' => "invalid data...",
-        ]);
-    }
+        if($other_lavel_data == null){
+            return redirect()->back()->with('message', "there are no Quiz set Yet.. Thanks ");
+        }else{
+            return view('other_quiz',compact('other_lavel_data'));
+        }
 
   }
 
@@ -157,7 +148,6 @@ class QuestionController extends Controller
    */
   public function result_store(Request $request)
   {
-    //   dd($request->all());
 
       $qst_id = $request->qst_id;
       $options = $request->option;
@@ -181,16 +171,10 @@ class QuestionController extends Controller
           }
       }
 
-      dd($right_answer,$wrong_answer);
 
-      
-
-    //   foreach ($options as $key => $value2) {
-    //     echo $value2."<br>";
-    // }
-
-
-
+      Alert::success('success','New Quiz and Question Successfully Added');
+    //   Your Right Answers is $right_answer and your Wrong Answer is $wrong_answer
+      return redirect('/homepage')->with('message', "Your total Right Answer is $right_answer and your Total Wrong Answer is $wrong_answer");
   }
 
   /**

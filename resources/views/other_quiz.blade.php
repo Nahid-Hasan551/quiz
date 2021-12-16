@@ -6,6 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" integrity="sha512-3pIirOrwegjM6erE5gPSwkUzO+3cTjpnV9lexlNZqvupR64iZBnOOTiiLPb9M36zpMScbmUNIcHUqKD47M719g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
@@ -35,96 +37,6 @@
         </div>
     </header>
     <div class="container">
-        <h1>Free Quiz</h1>
-    </div>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-3 col-sm-6">
-                <div class="card">
-                    <div class="card-body">
-                        <h4 class="level-title"> <b>Level One</b> </h4>
-                        <a href="javascript:void(0);" id="myBtn"class="btn btn-primary" onclick="lavel_one_quiz(1)">Play</a>
-                        {{-- {{ url('freequiz/1') }} --}}
-
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-3 col-sm-6">
-                <div class="card">
-                    <div class="card-body">
-                        <h4 class="level-title"> <b>Level Two</b> </h4>
-                        <a href="{{ url('freequiz/other/2')}}"class="btn btn-primary">Play</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-3 col-sm-6">
-                <div class="card">
-                    <div class="card-body">
-                        <h4 class="level-title"> <b>Level Three</b> </h4>
-                        <a href="{{ url('freequiz/other/3')}}"class="btn btn-primary">Play</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-3 col-sm-6">
-                <div class="card">
-                    <div class="card-body">
-                        <h4 class="level-title"> <b>Level Four</b> </h4>
-                        <a href="{{ url('freequiz/other/4')}}"class="btn btn-primary">Play</a>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-        <div class="container">
-            <div class="caption">
-                <h1>Leaderboard</h1>
-            </div>
-            <div class="leaderboard">
-                <table class="table">
-                    <thead class="table-head">
-                        <th>SN</th>
-                        <th>First Name</th>
-                        <th>Last Name</th>
-                        <th>Scored Point</th>
-                        <th>Level</th>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>Rayhan</td>
-                            <td>Kobir</td>
-                            <td>125</td>
-                            <td>Two</td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>Nahid</td>
-                            <td>Hasan</td>
-                            <td>115</td>
-                            <td>Two</td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>Israfil</td>
-                            <td>Islam</td>
-                            <td>105</td>
-                            <td>Two</td>
-                        </tr>
-
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-
-
-    <div id="myModal" class="modal" style="display: none">
-
-        {{-- @foreach($quiz_info as $key => $value) --}}
-
         <div class="modal-content">
             <div class="header">
                 <div class="row">
@@ -151,8 +63,8 @@
             <form action="{{ route('result_store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
 
-               @isset($quiz_info)
-                @foreach($quiz_info as $key => $value)
+               @isset($other_lavel_data)
+                @foreach($other_lavel_data as $key => $value)
 
                 <div class="question-section" id="question_list">
 
@@ -216,41 +128,22 @@
             </form>
 
         </div>
-        {{-- @endforeach --}}
-
-
     </div>
 
-    </div>
-
-    <script>
-        function lavel_one_quiz(lavel_id){
-            $("#myModal").show();
-
-            $.ajax({
-                type: "GET",
-                url: "freequiz/" + lavel_id,
-                dataType: "json",
-            });
-
-        }
-
-        function closeModal(){
-            $("#myModal").hide();
-        }
 
 
-    </script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
+</script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
+    integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous">
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
+    integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous">
+</script>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
-        integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous">
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
-        integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous">
-    </script>
+@include('sweetalert::alert')
+   @include('sweetalert::alert', ['cdn' => "https://cdn.jsdelivr.net/npm/sweetalert2@9"])
 </body>
 
 </html>
