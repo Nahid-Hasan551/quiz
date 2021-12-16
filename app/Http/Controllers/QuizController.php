@@ -1,10 +1,11 @@
-<?php 
+<?php
 
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
-class QuizController extends Controller 
+class QuizController extends Controller
 {
 
   /**
@@ -12,9 +13,24 @@ class QuizController extends Controller
    *
    * @return Response
    */
-  public function index()
+  public function quiz_view(Request $request)
   {
-    
+    //   dd($request->all());
+
+     if($request->quiz_type == 1){
+
+        $free_quiz_data = DB::table('quiz AS QZ')
+                            ->where('type',$request->quiz_type)
+                            ->where('lavel',$request->quiz_lavel)
+                            ->join('question AS QST',function($join){
+                                $join->on('QST.quiz_code','=','QZ.id');
+                            })
+                            ->get();
+
+                            dd($free_quiz_data);
+
+     }
+
   }
 
   /**
@@ -24,7 +40,7 @@ class QuizController extends Controller
    */
   public function create()
   {
-    
+
   }
 
   /**
@@ -34,7 +50,7 @@ class QuizController extends Controller
    */
   public function store(Request $request)
   {
-    
+
   }
 
   /**
@@ -45,7 +61,7 @@ class QuizController extends Controller
    */
   public function show($id)
   {
-    
+
   }
 
   /**
@@ -56,7 +72,7 @@ class QuizController extends Controller
    */
   public function edit($id)
   {
-    
+
   }
 
   /**
@@ -67,7 +83,7 @@ class QuizController extends Controller
    */
   public function update($id)
   {
-    
+
   }
 
   /**
@@ -78,9 +94,9 @@ class QuizController extends Controller
    */
   public function destroy($id)
   {
-    
+
   }
-  
+
 }
 
 ?>

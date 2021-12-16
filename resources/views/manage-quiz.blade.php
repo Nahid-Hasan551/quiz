@@ -16,13 +16,14 @@
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
+        <script src="../vendors/jquery/jquery.min.js"></script>
 
     <!-- Custom styles for this template-->
     <link href="../css/sb-admin-2.min.css" rel="stylesheet">
 
 </head>
 
-<body id="page-top">
+<body id="page-top" onload="field_hide();">
 
     <!-- Page Wrapper -->
     <div id="wrapper">
@@ -70,12 +71,12 @@
                 </div>
             </li>
 
-            
+
 
             <!-- Divider -->
             <hr class="sidebar-divider">
 
-        
+
 
             <!-- Sidebar Toggler (Sidebar) -->
             <div class="text-center d-none d-md-inline">
@@ -306,22 +307,26 @@
                                 <div class="card-header py-3">
                                     <h6 class="m-0 font-weight-bold text-primary">Select to manage Quiz</h6>
                                 </div>
+                               <form action="{{asset('quiz/view')}}" method="get" enctype="multipart/form-data" id="quiz_view_form">
+                                @csrf
                                 <div class="card-body">
                                     <div class="input-group mb-3 mt-3">
                                         <div class="input-group-prepend">
                                           <label class="input-group-text" for="inputGroupSelect01">Quiz Type</label>
                                         </div>
-                                        <select onchange="quizTypeChanger()" class="custom-select" id="inputGroupSelect01">
-                                          <option  value="1">Free Quiz</option>
-                                          <option selected value="2">Classic Quiz</option>
+                                        <select onchange="quizTypeChanger()" required name="quiz_type" class="custom-select" id="inputGroupSelect01">
+                                        <option selected value="">==select Quiz Type First==</option>
+                                          <option value="1">Free Quiz</option>
+                                          <option value="2">Classic Quiz</option>
                                         </select>
                                     </div>
-                                
+
                                     <div id="class-level" class="input-group mb-3 mt-3">
                                         <div class="input-group-prepend">
                                           <label class="input-group-text" for="inputGroupSelect01">Class level</label>
                                         </div>
-                                        <select class="custom-select" id="inputGroupSelect02">
+                                        <select class="custom-select" name="class_lavel" id="inputGroupSelect02">
+                                          <option value="">==select class lavel==</option>
                                           <option value="1">SSC</option>
                                           <option value="2">HSC</option>
                                           <option value="3">University Admission</option>
@@ -332,8 +337,9 @@
                                         <div class="input-group-prepend">
                                           <label class="input-group-text" for="inputGroupSelect03">Quiz level</label>
                                         </div>
-                                        <select class="custom-select" id="inputGroupSelect03">
-                                          <option selected value="1">level One</option>
+                                        <select class="custom-select" name="quiz_lavel" id="inputGroupSelect03">
+                                        <option selected value="">==select Quiz lavel==</option>
+                                          <option  value="1">level One</option>
                                           <option value="2">level two</option>
                                           <option value="3">level three</option>
                                           <option value="4">level four</option>
@@ -343,17 +349,25 @@
                                         <div class="input-group-prepend">
                                           <label class="input-group-text" for="inputGroupSelect04">Subject</label>
                                         </div>
-                                        <select onchange="" class="custom-select" id="inputGroupSelect04">
-                                          <option selected value="1">Math</option>
+                                        <select onchange="" class="custom-select" name="subject" id="inputGroupSelect04">
+                                            <option selected value="">==select Subject==</option>
+                                          <option  value="1">Math</option>
                                           <option value="2">English</option>
                                           <option value="3">Physics</option>
                                           <option value="4">Chemistry</option>
                                         </select>
                                     </div>
+
+                                    <div id="subject" class="input-group mb-3 mt-3">
+                                        <button type="submit" value="submit">View Quiz</button>
+                                    </div>
+
                                 </div>
+
+                               </form>
                             </div>
 
-                            
+
 
                         </div>
 
@@ -365,8 +379,8 @@
                                         <div class="col-md-6 col-sm-6"><h6 class="m-0 font-weight-bold text-primary">Edit Question</h6></div>
                                         <div id="add-question" class="col-md-6 col-sm-6">  </div>
                                     </div>
-                                    
-                                    
+
+
                                 </div>
                                 <div id="card-body" class="card-body">
                                     <div id="card-items" class="card-item">
@@ -390,7 +404,7 @@
                                 <div class="card-header py-3">
                                     <div class="row">
                                         <div class="col-md-6 col-sm-6"><h6 class="m-0 font-weight-bold text-primary">Are you want to save changes?</h6></div>
-                                    </div>                                  
+                                    </div>
                                 </div>
                                 <div id="card-body" class="card-body">
                                     <div id="" class="card-item">
@@ -398,7 +412,7 @@
                                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
                                             Save
                                         </button>
-                                        
+
                                         <!-- Modal -->
                                         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                             <div class="modal-dialog" role="document">
@@ -472,10 +486,10 @@
             </div>
         </div>
     </div>
-    
+
 
     <!-- Bootstrap core JavaScript-->
-    <script src="../vendors/jquery/jquery.min.js"></script>
+
     <script src="../vendors/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <!-- Core plugin JavaScript-->
@@ -483,6 +497,43 @@
 
     <!-- Custom scripts for all pages-->
     <script src="../js/sb-admin-2.min.js"></script>
+
+    <script>
+        function field_hide(){
+            $("#class-level").hide();
+            $("#quiz-level").hide();
+            $("#subject").hide();
+        }
+        function quizTypeChanger(){
+            var type = $("#inputGroupSelect01").val();
+
+            if(type == 1){
+                $("#class-level").hide();
+                $("#quiz-level").show();
+                $("#subject").hide();
+            }else{
+                $("#class-level").show();
+                $("#quiz-level").show();
+                $("#subject").show();
+            }
+
+        }
+        // function lavel_wize_quiz(){
+        //     var lavel_type = $("#inputGroupSelect03").val();
+        //     var quiz_type = $("#inputGroupSelect01").val();
+        //     // console.log(lavel_type)
+        //     $.ajax({
+        //         type: "GET",
+        //         url: "quiz/view",
+        //         data:{
+        //             lavel_type,
+        //             quiz_type,
+        //             "_token": "{{ csrf_token() }}",
+        //         },
+        //         dataType: "json",
+        //     });
+        // }
+    </script>
 
 </body>
 
