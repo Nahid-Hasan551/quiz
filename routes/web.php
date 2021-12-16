@@ -7,6 +7,8 @@ use App\Providers\RouteServiceProvider;
 
 
 use App\Http\Controllers\QuestionController;
+use Faker\Guesser\Name;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -66,7 +68,9 @@ Route::get('dashboard',function(){
 //     return view('create-quiz');
 // });
 Route::get('manage-quiz',function(){
+
     return view('manage-quiz');
+
 });
 
 //Route::get('create_quiz_test',[QuizController::class, 'create_quiz_test'])->name('free_quz');
@@ -81,7 +85,7 @@ Route::get('manage-quiz',function(){
  //})->name('dashboard');
 Route::get('homepage',function(){
     return view('homepage');
-});
+})->Name('homepage');
 
 
 Route::get('testing',function(){
@@ -103,6 +107,8 @@ Route::get('freequiz/other/{lavel}',[QuestionController::class, 'lavel_data'])->
 Route::post('freequiz/result',[QuestionController::class, 'result_store'])->name('result_store');
 
 Route::get('quiz/view',[QuizController::class, 'quiz_view'])->name('quiz_view');
+
+Route::post('quiz/update',[QuizController::class, 'quiz_update'])->name('update_quiz');
 
 
 

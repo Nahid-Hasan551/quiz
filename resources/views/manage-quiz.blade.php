@@ -24,7 +24,9 @@
 </head>
 
 <body id="page-top" onload="field_hide();">
-
+    @if(Session::has('message'))
+        <p class="alert alert-info float-right">{{ Session::get('message') }}</p>
+    @endif
     <!-- Page Wrapper -->
     <div id="wrapper">
 
@@ -382,16 +384,39 @@
 
 
                                 </div>
-                                <div id="card-body" class="card-body">
-                                    <div id="card-items" class="card-item">
-                                        <h6 class="text-center">Question no: <span class="counter">0</span></h6>
-                                        <input id="question" type="text" class="form-control" placeholder="Write you Question here" aria-label="Question" aria-describedby="basic-addon1">
-                                        <input id="secondoption" type="text" class="form-control" placeholder="First option" aria-label="Question" aria-describedby="basic-addon1">
-                                        <input id="thirdoption" type="text" class="form-control" placeholder="Secoond option" aria-label="Question" aria-describedby="basic-addon1"
-                                        <input type="text" class="form-control" placeholder="Third option" aria-label="Question" aria-describedby="basic-addon1">
-                                        <i  onclick="deleteBtn(this)" class="fas fa-fw fa-trash text-danger float-right mt-4 delete-btn"></i><br>
-                                    </div>
-                                </div>
+
+                <form action="{{ route('update_quiz') }}" method="post" enctype="multipart/form-data">
+                    @csrf
+
+                                    @if (isset($quiz_data))
+                                        @foreach ($quiz_data as $key => $value)
+                                        <div id="card-body" class="card-body">
+                                            <div id="card-items" class="card-item">
+
+                                                <h6 class="text-center">Question no: <span class="counter">{{ ++$key }}</span></h6>
+
+                                                <input type="hidden" name="qst_id[]" value="{{ $value->id }}">
+
+                                                <input id="question" type="text" name="question[]" class="form-control" value="{{ $value->question }}" placeholder="Write you Question here" aria-label="Question" aria-describedby="basic-addon1">
+
+                                                <input id="secondoption" type="text" name="first_option[]" value="{{ $value->first_option }}" class="form-control" placeholder="First option" aria-label="Question" aria-describedby="basic-addon1">
+
+                                                <input id="thirdoption" type="text" name="secound_option[]" class="form-control" value="{{ $value->secound_option }}" placeholder="Secoond option" aria-label="Question" aria-describedby="basic-addon1">
+
+                                                <input type="text" name="third_option[]" class="form-control" value="{{ $value->third_option }}" placeholder="Third option" aria-label="Question" aria-describedby="basic-addon1">
+
+                                                <input type="text" name="fourth_option[]" class="form-control" value="{{ $value->fourth_option }}" placeholder="Fourth option" aria-label="Question" aria-describedby="basic-addon1">
+
+                                                <input type="number" name="result[]" class="form-control" value="{{ $value->result }}" placeholder="Result No" aria-label="Question" aria-describedby="basic-addon1">
+
+                                                <i  onclick="deleteBtn(this)" class="fas fa-fw fa-trash text-danger float-right mt-4 delete-btn"></i><br>
+
+                                            </div>
+                                        </div>
+                                        @endforeach
+                                    @endif
+
+
                             </div>
 
                         </div>
@@ -428,7 +453,7 @@
                                                 </div>
                                                 <div class="modal-footer">
                                                 <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                                                <button type="button" class="btn btn-primary">Save changes</button>
+                                                <button type="submit" value="submit" class="btn btn-primary">Save changes</button>
                                                 </div>
                                             </div>
                                             </div>
@@ -439,6 +464,7 @@
 
                         </div>
                     </div>
+                </form>
 
                 </div>
                 <!-- /.container-fluid -->

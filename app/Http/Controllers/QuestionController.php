@@ -26,7 +26,6 @@ class QuestionController extends Controller
   public function index($lavel_one = null)
   {
 
-    // if(!is_null($lavel)){
 
         $quiz_info = DB::table('quiz AS QZ')
                     ->select('QST.*')
@@ -102,7 +101,7 @@ class QuestionController extends Controller
         'type'         => $request->quiz_type,
         'lavel'        => (isset($request->lavel) ? $request->lavel : 0),
         'class_level'  => (($request->quiz_type == 1) ? 0 : 1),
-        'subject_name' => $request->subject_name,
+        'subject_name' =>(( $request->subject_name == null ) ? null :  $request->subject_name),
         'created_at'   => Carbon::now(),
         'created_by'   => (isset(Auth::user()->id) ? Auth::user()->id : 0 ),
 

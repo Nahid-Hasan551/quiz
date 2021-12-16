@@ -22,7 +22,7 @@
         <div class="container header-pad">
             <nav class="navbar navbar-expand-lg navbar-light">
                 <div class="container-fluid">
-                    <a class="navbar-brand" href="#"><span>Home</span> </a>
+                    <a class="navbar-brand" href="{{route('freequiz')}}"><span>Home</span> </a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                         data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
                         aria-label="Toggle navigation">
@@ -43,19 +43,13 @@
                     <div class="col-md-4">
                         <h4>Quiz Name</h4>
                     </div>
-                    <div class="col-md-4">
-                        <h4>timer
+                    <div class="col-md-5"></div>
+                    <div class="col-md-3">
+                        <h4>timer :
                             <?php
-                            // for($i=0; $i<1000; $i++){
-                            //     echo $i*3600;
-                            //     }
-
-
+                                echo "25.00";
                              ?>
                         </h4>
-                    </div>
-                    <div class="col-md-4">
-                        <i class="close"><span onclick="closeModal();">&times;</span></i>
                     </div>
                 </div>
             </div>
