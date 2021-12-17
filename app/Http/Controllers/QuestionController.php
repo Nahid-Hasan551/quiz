@@ -39,17 +39,9 @@ class QuestionController extends Controller
                     ->whereNull('QZ.deleted_at')
                     ->get();
 
-                    // dd($quiz_info);
+
 
         return view('freequiz',compact('quiz_info'));
-
-    // }else{
-
-    //     return view('freequiz');
-
-    // }
-
-
 
 
   }

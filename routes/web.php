@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\QuizController;
 use App\Http\Controllers\AppQuestionController;
+use App\Http\Controllers\clasicController;
 use App\Providers\RouteServiceProvider;
 
 
@@ -49,9 +50,7 @@ Route::get('registration',function(){
 //     return view('freequiz');
 // });
 
-Route::get('classicquiz',function(){
-    return view('classicquiz');
-});
+
 Route::get('subjects-ssc',function(){
     return view('subjects-ssc');
 });
@@ -111,6 +110,8 @@ Route::get('quiz/view',[QuizController::class, 'quiz_view'])->name('quiz_view');
 Route::post('quiz/update',[QuizController::class, 'quiz_update'])->name('update_quiz');
 
 
+
+Route::get('/classicquiz',[clasicController::class,'index'])->name('classicquiz');
 
 
 // Route::resource('question', 'QuestionController');

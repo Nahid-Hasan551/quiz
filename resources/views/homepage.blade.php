@@ -182,7 +182,7 @@
 
 
                                     <li class="nav-item">
-                                        <a href="/classicquiz">Classic Quiz</a>
+                                        <a href="{{ route('classicquiz')}}">Classic Quiz</a>
                                         <ul class="sub-menu">
                                             <li><a href="contact.html">SSC Preparation</a></li>
                                             <ul class="sub-menu">
