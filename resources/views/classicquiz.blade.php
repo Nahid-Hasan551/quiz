@@ -26,7 +26,7 @@
               <div class="card">
                 <div class="card-body">
                   <h4 class="level-title"> <b>SSC Preparation</b> </h4>
-                  <a href="" onclick="subjects(1)" id="myBtn" class="btn btn-primary">Play</a>
+                  <a href="javascript:void(0);" onclick="quiz_class_name(1);" id="myBtn" class="btn btn-primary">Play</a>
                 </div>
               </div>
             </div>
@@ -35,7 +35,7 @@
                 <div class="card">
                   <div class="card-body">
                     <h4 class="level-title"> <b>HSC Preparation</b> </h4>
-                    <a href="subjects-hsc" class="btn btn-primary">Play</a>
+                    <a href="javascript:void(0);" onclick="quiz_class_name(2);" class="btn btn-primary">Play</a>
                   </div>
                 </div>
               </div>
@@ -44,7 +44,7 @@
                 <div class="card">
                   <div class="card-body">
                     <h4 class="level-title"> <b>Admission</b> </h4>
-                    <a href="#" class="btn btn-primary">Play</a>
+                    <a href="javascript:void(0);" onclick="quiz_class_name(3);" class="btn btn-primary">Play</a>
                   </div>
                 </div>
               </div>
@@ -53,7 +53,7 @@
                 <div class="card">
                   <div class="card-body">
                     <h4 class="level-title"> <b>BCS Preparation</b> </h4>
-                    <a href="#" id="last-btn" class="btn btn-primary">Play</a>
+                    <a href="javascript:void(0);" onclick="quiz_class_name(4);" id="last-btn" class="btn btn-primary">Play</a>
                   </div>
                 </div>
               </div>
@@ -99,29 +99,125 @@
                   </table>
             </div>
         </div>
-    </div>
+        <div id="myModal" class="modal" style="display: none">
 
-    <div id="myModal" class="modal">
-        <div class="modal-content">
+            <div class="container">
+                <div class="modal-content">
+                    <div class="header">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <span id="quiz_name"></span>
+                            </div>
+                            <div class="col-md-4">
+
+                            </div>
+                            <div class="col-md-4">
+                                <i class="close"><span onclick="closeModal();">&times;</span></i>
+                            </div>
+                        </div>
+                    </div>
+
+                        <div class="main_body p-5">
+
+                            <input type="hidden" value="" id="quiz_class_type" name="quiz_class_type">
+
+                            <div class="row">
+
+                                <div class="col-md-6 col-sm-12">
+                                    <div class="card">
+                                      <div class="card-body">
+                                        <h4 class="level-title"> <b>Math</b> </h4>
+                                        <a href="javascript:void(0);" id="last-btn" onclick="quiz_view(1)" class="btn btn-primary">Play</a>
+                                      </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6 col-sm-12">
+                                  <div class="card">
+                                    <div class="card-body">
+                                      <h4 class="level-title"> <b>Physics</b> </h4>
+                                      <a href="javascript:void(0);" onclick="quiz_view(2)" id="myBtn"class="btn btn-primary">Play</a>
+                                    </div>
+                                  </div>
+                                </div>
+
+                            </div>
+                            <div class="row">
+
+                                <div class="col-md-6 col-sm-12">
+                                    <div class="card">
+                                        <div class="card-body">
+                                        <h4 class="level-title"> <b>Chemestry</b> </h4>
+                                        <a href="javascript:void(0);" onclick="quiz_view(3)" id="last-btn" class="btn btn-primary">Play</a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6 col-sm-12">
+                                    <div class="card">
+                                        <div class="card-body">
+                                        <h4 class="level-title"> <b>Biology</b> </h4>
+                                        <a href="javascript:void(0);" onclick="quiz_view(4)" id="last-btn" class="btn btn-primary">Play</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                </div>
+            </div>
+
 
         </div>
 
-      </div>
-
+    </div>
 @endsection
 
 @section('script')
     <script>
-    // var modal = document.getElementById("myModal");
-    // var btn = document.getElementById("myBtn");
-    // var span = document.getElementsByClassName("close")[0];
 
-    function subjects(){
+    function quiz_class_name(class_type){
 
-        $("#myModal").show();
+        // $("#exampleModal").show();
         // alert('done');
+
+
+        if(class_type == 1){
+            $("#quiz_name").html('<h4>SSC Preparation</h4>');
+            $("#quiz_class_type").val(1);
+        }
+        else if(class_type == 2){
+             $("#quiz_name").html('<h4>HSC Preparation</h4>');
+             $("#quiz_class_type").val(2);
+
+        }else if(class_type == 3){
+             $("#quiz_name").html('<h4>Admission</h4>');
+             $("#quiz_class_type").val(3);
+
+        }else if(class_type == 4){
+             $("#quiz_name").html('<h4>BCS Preparation</h4>');
+             $("#quiz_class_type").val(4);
+        }
+
+        $('#myModal').show();
     }
 
+    function closeModal(){
+        $('#myModal').hide();
+    }
+
+    function quiz_view(subject_id){
+        var quiz_class_type_id =  $("#quiz_class_type").val();
+
+        $.ajax({
+            type: "GET",
+            url: "classic_quiz/" + quiz_class_type_id + "/" + subject_id,
+            dataType: "json",
+
+        });
+
+    }
     </script>
 
 @endsection

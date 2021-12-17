@@ -113,6 +113,10 @@ Route::post('quiz/update',[QuizController::class, 'quiz_update'])->name('update_
 
 Route::get('/classicquiz',[clasicController::class,'index'])->name('classicquiz');
 
+Route::get('/view_clasic_quiz',[clasicController::class,'view_clasic_quiz'])->name('view_clasic_quiz');
+
+Route::get('/classic_quiz/{class_type}/{subject_id}',[clasicController::class,'classicQuiz'])->name('classic_quiz');
+
 
 // Route::resource('question', 'QuestionController');
 

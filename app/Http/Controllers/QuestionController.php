@@ -63,6 +63,7 @@ class QuestionController extends Controller
 
 
 
+
         if($other_lavel_data == null){
             return redirect()->back()->with('message', "there are no Quiz set Yet.. Thanks ");
         }else{

@@ -1,4 +1,9 @@
 /*My New part*/
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
 
 body{
     background-color: rgba(215, 238, 248, 0.301);
@@ -41,7 +46,7 @@ body{
 .caption{
     padding: 30px 0px;
 }
-.modal {
+.modal{
     /* position: fixed; */
     /* z-index: 1; */
     padding-top: 30px;
@@ -57,7 +62,7 @@ body{
 
 
 
-  .modal-content {
+  .modal-content{
     background-color: #fefefe;
     margin: auto;
     border-radius: 5px;
