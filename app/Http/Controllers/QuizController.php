@@ -59,10 +59,6 @@ class QuizController extends Controller
                             ->select('*')
                             ->get();
 
-                            // ->join('question AS QST',function($join){
-                            //     $join->on('QST.quiz_code','=','QZ.id');
-                            // })
-        // dd($quiz_data);
      }
 
     //  dd($quiz_data);
