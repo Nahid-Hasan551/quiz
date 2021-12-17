@@ -47,13 +47,22 @@ class QuizController extends Controller
      }
 
     if($data['quiz_type'] == 2){
-        $quiz_data = DB::table('quiz AS QZ')
+
+        $quiz_id = DB::table('quiz AS QZ')
                             ->where('type',$data['quiz_type'])
-                            ->where('lavel',$data['quiz_lavel'])
-                            ->join('question AS QST',function($join){
-                                $join->on('QST.quiz_code','=','QZ.id');
-                            })
+                            ->where('class_level',$data['class_lavel'])
+                            ->where('subject_name',$data['subject'])
+                            ->first()->id;
+
+        $quiz_data = DB::table('question')
+                            ->where('quiz_code','=',$quiz_id)
+                            ->select('*')
                             ->get();
+
+                            // ->join('question AS QST',function($join){
+                            //     $join->on('QST.quiz_code','=','QZ.id');
+                            // })
+        // dd($quiz_data);
      }
 
     //  dd($quiz_data);
@@ -148,11 +157,20 @@ class QuizController extends Controller
 
         $response = $question->question_update_data($request);
 
-        dd($response['id']);
+        // dd($response);
 
-        $result = DB::table('question') ->where('id', $response['id'])->update($response);
+        foreach($response as $key => $value){
 
-        // dd($result);
+            $result = DB::table('question') ->where('id', $value['id'])->update([
+                                'question' => $value['question'],
+                                'first_option' => $value['first_option'],
+                                'secound_option' => $value['secound_option'],
+                                'third_option' => $value['third_option'],
+                                'fourth_option' => $value['fourth_option'],
+                                'result' => $value['result'],
+                                'updated_at' => Carbon::now(),
+                            ]);
+        }
         DB::commit();
 
         Alert::success('success','New Quiz and Question Successfully Added');
@@ -160,7 +178,7 @@ class QuizController extends Controller
         return redirect()->back();
 
     } catch (Exception $e) {
-
+        // dd($e);
         DB::rollBack();
 
         Alert::success('error','Opps... Fail To Save');

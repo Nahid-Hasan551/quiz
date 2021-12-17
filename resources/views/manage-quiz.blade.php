@@ -43,7 +43,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
-                <a class="nav-link" href="dashboard">
+                <a class="nav-link" href="{{route('homepage')}}">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
@@ -390,6 +390,7 @@
 
                                     @if (isset($quiz_data))
                                         @foreach ($quiz_data as $key => $value)
+
                                         <div id="card-body" class="card-body">
                                             <div id="card-items" class="card-item">
 
@@ -415,7 +416,6 @@
                                         </div>
                                         @endforeach
                                     @endif
-
 
                             </div>
 
@@ -539,7 +539,7 @@
                 $("#subject").hide();
             }else{
                 $("#class-level").show();
-                $("#quiz-level").show();
+                $("#quiz-level").hide();
                 $("#subject").show();
             }
 

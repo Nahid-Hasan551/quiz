@@ -96,12 +96,14 @@ class QuestionController extends Controller
    */
   public function store(Request $request)
   {
+    //   dd($request);
     $quiz = [
         'quiz_name' => (isset($request->quiz_name) ? $request->quiz_name : 'null'),
         'type'         => $request->quiz_type,
+        'status'         => 1,
         'lavel'        => (isset($request->lavel) ? $request->lavel : 0),
-        'class_level'  => (($request->quiz_type == 1) ? 0 : 1),
-        'subject_name' =>(( $request->subject_name == null ) ? null :  $request->subject_name),
+        'class_level'  => ((isset($request->level_class_id)) ? $request->level_class_id : 0),
+        'subject_name' =>(( isset($request->subject_name) ) ? $request->subject_name : 0 ),
         'created_at'   => Carbon::now(),
         'created_by'   => (isset(Auth::user()->id) ? Auth::user()->id : 0 ),
 

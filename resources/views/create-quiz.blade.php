@@ -341,7 +341,14 @@
                                     </div>
                                     <div id="subject" class="input-group">
                                         <span class="input-group-text">Subject Name</span>
-                                        <input class="form-control subject_name" name="subject_name" aria-label="With textarea"></input>
+                                        {{-- <input class="form-control subject_name" name="subject_name" aria-label="With textarea"></input> --}}
+                                        <select onchange="" class="custom-select" name="subject_name">
+                                            <option selected value="">==select Subject==</option>
+                                          <option  value="1">Math</option>
+                                          <option value="2">English</option>
+                                          <option value="3">Physics</option>
+                                          <option value="4">Chemistry</option>
+                                        </select>
                                     </div>
 
                                     <div id="level" class="input-group mb-3 mt-3">
@@ -349,6 +356,7 @@
                                           <label class="input-group-text "  for="inputGroupSelect04">Level</label>
                                         </div>
                                         <select class="custom-select level"name="lavel" id="inputGroupSelect04">
+                                          <option selected value="">==select Lavel==</option>
                                           <option value="1">One</option>
                                           <option value="2">Two</option>
                                           <option value="3">Three</option>
