@@ -18,6 +18,10 @@
 </head>
 
 <body>
+    @if(Session::has('message'))
+        <p class="alert alert-info">{{ Session::get('message') }}</p>
+    @endif
+    
     <header>
         <div class="container header-pad">
             <nav class="navbar navbar-expand-lg navbar-light">

@@ -47,7 +47,7 @@ class clasicController extends Controller
                     // json_decode($json, true)
 
         if($other_lavel_data == null){
-            return redirect()->back()->with('message', "there are no Quiz set Yet.. Thanks ");
+            return redirect(route('classicquiz'))->with('message', "there are no Quiz set Yet.. Thanks ");
         }else{
             return view('other_clasic_quiz',compact('other_lavel_data'));
 

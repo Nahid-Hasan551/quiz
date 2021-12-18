@@ -1,7 +1,11 @@
 @extends('layouts.include.master')
 @section('title','Classic Quiz')
 @section('main_section')
-    <span id="msg"></span>
+
+    @if(Session::has('message'))
+        <p class="alert alert-info">{{ Session::get('message') }}</p>
+    @endif
+    {{-- <span id="msg"></span> --}}
     <header>
         <div class="container header-pad">
             <nav class="navbar navbar-expand-lg navbar-light">
@@ -174,10 +178,6 @@
     <script>
 
     function quiz_class_name(class_type){
-
-        // $("#exampleModal").show();
-        // alert('done');
-
         if(class_type == 1){
             $("#quiz_name").html('<h4>SSC Preparation</h4>');
             $("#quiz_class_type").val(1);
@@ -193,27 +193,16 @@
              $("#quiz_name").html('<h4>BCS Preparation</h4>');
              $("#quiz_class_type").val(4);
         }
-
         $('#myModal').show();
-
     }
 
     function closeModal(){
         $('#myModal').hide();
     }
 
-    // function quiz_view(){
-
-    // }
-
     function quiz_view(subject_id){
         var quiz_class_type_id =  $("#quiz_class_type").val();
 
-        // $.ajaxSetup({
-        //         headers: {
-        //             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        //         }
-        //     });
         window.open("classic_quiz/" + quiz_class_type_id + "/" + subject_id);
 
         // $.ajax({
