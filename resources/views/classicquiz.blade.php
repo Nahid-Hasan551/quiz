@@ -1,6 +1,7 @@
 @extends('layouts.include.master')
 @section('title','Classic Quiz')
 @section('main_section')
+    <span id="msg"></span>
     <header>
         <div class="container header-pad">
             <nav class="navbar navbar-expand-lg navbar-light">
@@ -26,6 +27,7 @@
               <div class="card">
                 <div class="card-body">
                   <h4 class="level-title"> <b>SSC Preparation</b> </h4>
+
                   <a href="javascript:void(0);" onclick="quiz_class_name(1);" id="myBtn" class="btn btn-primary">Play</a>
                 </div>
               </div>
@@ -100,7 +102,6 @@
             </div>
         </div>
         <div id="myModal" class="modal" style="display: none">
-
             <div class="container">
                 <div class="modal-content">
                     <div class="header">
@@ -116,7 +117,6 @@
                             </div>
                         </div>
                     </div>
-
                         <div class="main_body p-5">
 
                             <input type="hidden" value="" id="quiz_class_type" name="quiz_class_type">
@@ -163,12 +163,8 @@
                                 </div>
                             </div>
                         </div>
-
-
                 </div>
             </div>
-
-
         </div>
 
     </div>
@@ -182,12 +178,10 @@
         // $("#exampleModal").show();
         // alert('done');
 
-
         if(class_type == 1){
             $("#quiz_name").html('<h4>SSC Preparation</h4>');
             $("#quiz_class_type").val(1);
-        }
-        else if(class_type == 2){
+        }else if(class_type == 2){
              $("#quiz_name").html('<h4>HSC Preparation</h4>');
              $("#quiz_class_type").val(2);
 
@@ -201,24 +195,43 @@
         }
 
         $('#myModal').show();
+
     }
 
     function closeModal(){
         $('#myModal').hide();
     }
 
+    // function quiz_view(){
+
+    // }
+
     function quiz_view(subject_id){
         var quiz_class_type_id =  $("#quiz_class_type").val();
 
-        $.ajax({
-            type: "GET",
-            url: "classic_quiz/" + quiz_class_type_id + "/" + subject_id,
-            dataType: "json",
+        // $.ajaxSetup({
+        //         headers: {
+        //             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        //         }
+        //     });
+        window.open("classic_quiz/" + quiz_class_type_id + "/" + subject_id);
 
-        });
-
+        // $.ajax({
+        //     type: "POST",
+        //     url: "/classic_quiz/view",
+        //     data:{
+        //         quiz_class_type_id,
+        //         subject_id,
+        //     },
+        //     dataType: "json",
+        //     success: function (data) {
+        //             $("#msg").html(data.html);
+        //         }
+        // )};
     }
     </script>
-
 @endsection
+
+
+
 
