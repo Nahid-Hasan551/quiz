@@ -22,7 +22,7 @@
         <div class="container header-pad">
             <nav class="navbar navbar-expand-lg navbar-light">
                 <div class="container-fluid">
-                    <a class="navbar-brand" href="{{route('freequiz')}}"><span>Home</span> </a>
+                    <a class="navbar-brand" href="{{route('classicquiz')}}"><span>Home</span> </a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                         data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
                         aria-label="Toggle navigation">

@@ -26,6 +26,7 @@ class clasicController extends Controller
     {
         // dd($class_type,$subject_id);
 
+        header("Content-Type: application/json");
 
         $other_lavel_data = DB::table('quiz AS QZ')
                     ->select('QST.*')
@@ -40,7 +41,7 @@ class clasicController extends Controller
                     ->whereNull('QZ.deleted_at')
                     ->get();
 
-                    // $other_lavel_data = json_decode($other_lavel_data,true);
+            // $other_lavel_data = json_decode($other_lavel_data,true);
                     // dd($other_lavel_data[0]->quiz_code);
 
                     // json_decode($json, true)
