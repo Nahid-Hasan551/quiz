@@ -21,7 +21,7 @@
     @if(Session::has('message'))
         <p class="alert alert-info">{{ Session::get('message') }}</p>
     @endif
-    
+
     <header>
         <div class="container header-pad">
             <nav class="navbar navbar-expand-lg navbar-light">
@@ -49,10 +49,14 @@
                     </div>
                     <div class="col-md-5"></div>
                     <div class="col-md-3">
-                        <h4>timer :
-                            <?php
-                                echo "25.00";
-                             ?>
+                        <h4>timer : <?php
+
+                                    $time = 2500;
+                                    for ($i=0; $i < $time; $i--) {
+                                        echo $i;
+                                    }
+                            ?>
+
                         </h4>
                     </div>
                 </div>
