@@ -24,7 +24,6 @@ class clasicController extends Controller
      */
     public function classicQuiz($class_type,$subject_id)
     {
-        // dd($class_type,$subject_id);
 
         header("Content-Type: application/json");
 
@@ -41,22 +40,12 @@ class clasicController extends Controller
                     ->whereNull('QZ.deleted_at')
                     ->get();
 
-            // $other_lavel_data = json_decode($other_lavel_data,true);
-                    // dd($other_lavel_data[0]->quiz_code);
-
-                    // json_decode($json, true)
-
         if($other_lavel_data == null){
             return redirect(route('classicquiz'))->with('message', "there are no Quiz set Yet.. Thanks ");
         }else{
             return view('other_clasic_quiz',compact('other_lavel_data'));
-
-            // return redirect(route('view_clasic_quiz'))->with('other_lavel_data',$other_lavel_data);
-            // return view('other_clasic_quiz')->with('other_lavel_data', json_decode($other_lavel_data, true));
-            // return view('other_clasic_quiz')->with('other_lavel_data',$other_lavel_data);
         }
 
-        // return view('other_quiz1');
     }
     public function view_clasic_quiz(){
         return view('other_clasic_quiz');
