@@ -40,7 +40,7 @@
                 <div class="card">
                   <div class="card-body">
                     <h4 class="level-title"> <b>HSC Preparation</b> </h4>
-                    <a href="javascript:void(0);" onclick="quiz_class_name(2);" class="btn btn-primary">Play</a>
+                    <a href="{{ route('hsc_preparation') }}" class="btn btn-primary">Play</a>
                   </div>
                 </div>
               </div>
@@ -49,7 +49,7 @@
                 <div class="card">
                   <div class="card-body">
                     <h4 class="level-title"> <b>Admission</b> </h4>
-                    <a href="javascript:void(0);" onclick="quiz_class_name(3);" class="btn btn-primary">Play</a>
+                    <a href="{{ route('admission_preparation') }}" class="btn btn-primary">Play</a>
                   </div>
                 </div>
               </div>
@@ -58,7 +58,7 @@
                 <div class="card">
                   <div class="card-body">
                     <h4 class="level-title"> <b>BCS Preparation</b> </h4>
-                    <a href="javascript:void(0);" onclick="quiz_class_name(4);" id="last-btn" class="btn btn-primary">Play</a>
+                    <a href="{{ route('bcs_preparation') }}" id="last-btn" class="btn btn-primary">Play</a>
                   </div>
                 </div>
               </div>
@@ -202,7 +202,7 @@
     function quiz_view(subject_id){
         var quiz_class_type_id =  $("#quiz_class_type").val();
 
-        window.open("classic_quiz/" + quiz_class_type_id + "/" + subject_id);
+        // window.open("classic_quiz/" + quiz_class_type_id + "/" + subject_id);
 
         // $.ajax({
         //     type: "POST",

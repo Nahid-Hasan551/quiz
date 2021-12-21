@@ -36,7 +36,8 @@
                 <div class="card-body">
                   <h4 class="level-title"> <b>Physics</b> </h4>
                   <form action="{{ route('ssc_questions') }}" method="get">
-                    <input type="hidden" value="1" name="class_id">
+                    {{-- @csrf --}}
+                    <input type="hidden" value="4" name="class_id">
                     <input type="hidden" value="1" name="subject_id">
                     <button type="submit" class="btn btn-primary">Play</button>
                 </form>
@@ -47,8 +48,10 @@
             <div class="col-md-3 col-sm-6">
                 <div class="card">
                   <div class="card-body">
-                    <h4 class="level-title"> <b>Chemestry</b> </h4> <form action="{{ route('ssc_questions') }}" method="get">
-                        <input type="hidden" value="1" name="class_id">
+                    <h4 class="level-title"> <b>Chemestry</b> </h4>
+                    <form action="{{ route('ssc_questions') }}" method="get">
+                        {{-- @csrf --}}
+                        <input type="hidden" value="4" name="class_id">
                         <input type="hidden" value="2" name="subject_id">
                         <button type="submit" class="btn btn-primary">Play</button>
                     </form>
@@ -61,7 +64,8 @@
                   <div class="card-body">
                     <h4 class="level-title"> <b>Biology</b> </h4>
                     <form action="{{ route('ssc_questions') }}" method="get">
-                        <input type="hidden" value="1" name="class_id">
+                        {{-- @csrf --}}
+                        <input type="hidden" value="4" name="class_id">
                         <input type="hidden" value="3" name="subject_id">
                         <button type="submit" class="btn btn-primary">Play</button>
                     </form>
@@ -74,7 +78,8 @@
                   <div class="card-body">
                     <h4 class="level-title"> <b>Math</b> </h4>
                     <form action="{{ route('ssc_questions') }}" method="get">
-                        <input type="hidden" value="1" name="class_id">
+                        {{-- @csrf --}}
+                        <input type="hidden" value="4" name="class_id">
                         <input type="hidden" value="4" name="subject_id">
                         <button type="submit" class="btn btn-primary">Play</button>
                     </form>

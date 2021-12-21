@@ -78,6 +78,21 @@ class clasicController extends Controller
         // dd("done");
         return view('ssc.ssc_page');
     }
+    public function hsc_preparation_page()
+    {
+        // dd("done");
+        return view('hsc.hsc_page');
+    }
+    public function admission_preparation_page()
+    {
+        // dd("done");
+        return view('admission.admission_page');
+    }
+    public function bcs_preparation_page()
+    {
+        // dd("done");
+        return view('bcs.bcs_page');
+    }
 
     public function ssc_questions(Request $request)
     {
@@ -97,11 +112,12 @@ class clasicController extends Controller
                 ->where('QZ.class_level',$class_id)
                 ->where('QZ.subject_name',$subject_id)
                 ->whereNull('QZ.deleted_at')
-                ->get();
+                ->get()->toArray();
 
                 // dd($other_lavel_data);
 
-                return view('ssc.ssc_quiz_view');
+                // return view('ssc.ssc_quiz_view',$other_lavel_data);
+                return view('quiz_view',compact('other_lavel_data'));
     }
     /**
      * Show the form for editing the specified resource.

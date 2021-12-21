@@ -124,3 +124,12 @@ Route::get('/ssc_preparation',[clasicController::class,'ssc_preparation_page'])-
 
 Route::get('/get/ssc/questions',[clasicController::class,'ssc_questions'])->name('ssc_questions');
 
+// hsc preparetion
+Route::get('/hsc_preparation',[clasicController::class,'hsc_preparation_page'])->name('hsc_preparation');
+
+// admission_preparation_page preparetion
+Route::get('/admission_preparation',[clasicController::class,'admission_preparation_page'])->name('admission_preparation');
+
+// admission_preparation_page preparetion
+Route::get('/bcs_preparation',[clasicController::class,'bcs_preparation_page'])->name('bcs_preparation');
+

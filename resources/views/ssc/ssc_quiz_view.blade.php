@@ -68,7 +68,7 @@
             <form action="{{ route('result_store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
 
-               @isset($other_lavel_data)
+               {{-- @isset($other_lavel_data) --}}
                 @foreach($other_lavel_data as $key => $value)
 
                 <div class="question-section" id="question_list">
@@ -109,12 +109,12 @@
                     </div>
                 </div>
             @endforeach
-            @endisset
+            {{-- @endisset --}}
 
                 <div class="footer">
                     <div class="row">
                         <div class="col-md-6">
-                            <nav aria-label="...">
+                            <nav aria-label="">
                                 {{-- <ul class="pagination">
                                     <li class="page-item disabled">
                                         <span class="page-link">Previous</span>
