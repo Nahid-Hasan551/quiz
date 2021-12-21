@@ -129,7 +129,7 @@
                                 <div class="col-md-6 col-sm-12">
                                     <div class="card">
                                       <div class="card-body">
-                                        <h4 class="level-title"> <b>Math</b> </h4>
+                                        <h4 class="level-title"> <b>Physics</b> </h4>
                                         <a href="javascript:void(0);" id="last-btn" onclick="quiz_view(1)" class="btn btn-primary">Play</a>
                                       </div>
                                     </div>
@@ -138,7 +138,7 @@
                                 <div class="col-md-6 col-sm-12">
                                   <div class="card">
                                     <div class="card-body">
-                                      <h4 class="level-title"> <b>Physics</b> </h4>
+                                      <h4 class="level-title"> <b>Math</b> </h4>
                                       <a href="javascript:void(0);" onclick="quiz_view(2)" id="myBtn"class="btn btn-primary">Play</a>
                                     </div>
                                   </div>

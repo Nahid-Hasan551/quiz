@@ -48,7 +48,7 @@
             <div class="header">
                 <div class="row">
                     <div class="col-md-4">
-                        <h4>Quiz Name</h4>
+                {{-- <h4>Quiz Name</h4> --}}
                     </div>
                     <div class="col-md-5"></div>
                     <div class="col-md-3">

@@ -34,7 +34,7 @@
             <div class="col-md-3 col-sm-6">
               <div class="card">
                 <div class="card-body">
-                  <h4 class="level-title"> <b>Physics</b> </h4>
+                  <h4 class="level-title"> <b>Math</b> </h4>
                   <form action="{{ route('ssc_questions') }}" method="get">
                     {{-- @csrf --}}
                     <input type="hidden" value="2" name="class_id">
@@ -76,7 +76,7 @@
               <div class="col-md-3 col-sm-6">
                 <div class="card">
                   <div class="card-body">
-                    <h4 class="level-title"> <b>Math</b> </h4>
+                    <h4 class="level-title"> <b>Physcis</b> </h4>
                     <form action="{{ route('ssc_questions') }}" method="get">
                         {{-- @csrf --}}
                         <input type="hidden" value="2" name="class_id">
