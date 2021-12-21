@@ -22,10 +22,10 @@ class clasicController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function classicQuiz(Request $request)
+    public function classicQuiz($class_type,$subject_id)
     {
-        $class_type = $request->class_id;
-        $subject_id = $request->subject_id;
+        // $class_type = $request->class_id;
+        // $subject_id = $request->subject_id;
 
         // dd($class_type,$subject_id);
 
@@ -47,8 +47,8 @@ class clasicController extends Controller
         if($other_lavel_data == null){
             return redirect(route('classicquiz'))->with('message', "there are no Quiz set Yet.. Thanks ");
         }else{
-            // return view('other_clasic_quiz',compact('other_lavel_data'));
-            return view('other_clasic_quiz');
+            return view('other_clasic_quiz',compact('other_lavel_data'));
+            // return view('other_clasic_quiz');
         }
 
     }

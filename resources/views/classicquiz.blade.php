@@ -202,7 +202,7 @@
     function quiz_view(subject_id){
         var quiz_class_type_id =  $("#quiz_class_type").val();
 
-        // window.open("classic_quiz/" + quiz_class_type_id + "/" + subject_id);
+        window.open("classic_quiz/" + quiz_class_type_id + "/" + subject_id);
 
         // $.ajax({
         //     type: "POST",
