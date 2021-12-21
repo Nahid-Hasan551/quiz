@@ -51,7 +51,6 @@ class clasicController extends Controller
             return view('other_clasic_quiz');
         }
 
-        // return view('other_quiz1');
     }
     public function view_clasic_quiz(){
         return view('other_clasic_quiz');
