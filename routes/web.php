@@ -115,9 +115,12 @@ Route::get('/classicquiz',[clasicController::class,'index'])->name('classicquiz'
 
 Route::get('/view_clasic_quiz',[clasicController::class,'view_clasic_quiz'])->name('view_clasic_quiz');
 
-Route::get('/classic_quiz/{class_type}/{subject_id}',[clasicController::class,'classicQuiz'])->name('classic_quiz');
+// Route::get('/classic_quiz/{class_type}/{subject_id}',[clasicController::class,'classicQuiz'])->name('classic_quiz');
 
+Route::get('/classic_quiz/view',[clasicController::class,'classicQuiz'])->name('classic_quiz.view');
 
-// Route::resource('question', 'QuestionController');
+// ssc preparetion
+Route::get('/ssc_preparation',[clasicController::class,'ssc_preparation_page'])->name('ssc_preparation');
 
-// Route::resource('quiz', 'QuizController');
+Route::get('/get/ssc/questions',[clasicController::class,'ssc_questions'])->name('ssc_questions');
+

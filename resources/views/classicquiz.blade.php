@@ -31,8 +31,7 @@
               <div class="card">
                 <div class="card-body">
                   <h4 class="level-title"> <b>SSC Preparation</b> </h4>
-
-                  <a href="javascript:void(0);" onclick="quiz_class_name(1);" id="myBtn" class="btn btn-primary">Play</a>
+                      <a id="myBtn" href="{{ route('ssc_preparation') }}" class="btn btn-primary">Play</a>
                 </div>
               </div>
             </div>
@@ -203,7 +202,7 @@
     function quiz_view(subject_id){
         var quiz_class_type_id =  $("#quiz_class_type").val();
 
-        window.open("classic_quiz/" + quiz_class_type_id + "/" + subject_id);
+        // window.open("classic_quiz/" + quiz_class_type_id + "/" + subject_id);
 
         // $.ajax({
         //     type: "POST",

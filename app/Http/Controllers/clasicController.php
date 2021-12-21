@@ -22,11 +22,12 @@ class clasicController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function classicQuiz($class_type,$subject_id)
+    public function classicQuiz(Request $request)
     {
-        // dd($class_type,$subject_id);
+        $class_type = $request->class_id;
+        $subject_id = $request->subject_id;
 
-        header("Content-Type: application/json");
+        // dd($class_type,$subject_id);
 
         $other_lavel_data = DB::table('quiz AS QZ')
                     ->select('QST.*')
@@ -41,19 +42,13 @@ class clasicController extends Controller
                     ->whereNull('QZ.deleted_at')
                     ->get();
 
-            // $other_lavel_data = json_decode($other_lavel_data,true);
-                    // dd($other_lavel_data[0]->quiz_code);
-
-                    // json_decode($json, true)
+                    // dd($other_lavel_data);
 
         if($other_lavel_data == null){
             return redirect(route('classicquiz'))->with('message', "there are no Quiz set Yet.. Thanks ");
         }else{
-            return view('other_clasic_quiz',compact('other_lavel_data'));
-
-            // return redirect(route('view_clasic_quiz'))->with('other_lavel_data',$other_lavel_data);
-            // return view('other_clasic_quiz')->with('other_lavel_data', json_decode($other_lavel_data, true));
-            // return view('other_clasic_quiz')->with('other_lavel_data',$other_lavel_data);
+            // return view('other_clasic_quiz',compact('other_lavel_data'));
+            return view('other_clasic_quiz');
         }
 
         // return view('other_quiz1');
@@ -79,11 +74,36 @@ class clasicController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function ssc_preparation_page()
     {
-        //
+        // dd("done");
+        return view('ssc.ssc_page');
     }
 
+    public function ssc_questions(Request $request)
+    {
+        // dd("done");
+        // dd($request->all());
+        $class_id = $request->class_id;
+        $subject_id = $request->subject_id;
+
+        $other_lavel_data = DB::table('quiz AS QZ')
+                ->select('QST.*')
+                ->join('question AS QST',function($join){
+                    $join->on('QST.quiz_code','=','QZ.id')
+                    ->whereNull('QST.deleted_at');
+                })
+                ->where('QZ.type','=',2)
+                ->where('QZ.status','=',1)
+                ->where('QZ.class_level',$class_id)
+                ->where('QZ.subject_name',$subject_id)
+                ->whereNull('QZ.deleted_at')
+                ->get();
+
+                // dd($other_lavel_data);
+
+                return view('ssc.ssc_quiz_view');
+    }
     /**
      * Show the form for editing the specified resource.
      *
